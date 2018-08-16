@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+##############################################################################
+#
+# Copyright (c) 2018 Modoolar (http://modoolar.com) All Rights Reserved.
+#
+# WARNING: This program as such is intended to be used by professional
+# programmers who take the whole responsibility of assessing all potential
+# consequences resulting from its eventual inadequacies and bugs
+# End users who are looking for a ready-to-use solution with commercial
+# guarantees and support are strongly advised to contract support@modoolar.com
+#
+##############################################################################
+-->
+<odoo>
+
+    <record id="view_order_form_fix_problems" model="ir.ui.view">
+        <field name="name">sale.order.form.fix.problems</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_confirm']" position="after">
+                <button string="Fix Problem" type="object" name="fix_problem"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
