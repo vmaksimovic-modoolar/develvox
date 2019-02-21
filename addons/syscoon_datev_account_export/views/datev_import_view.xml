@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="wizard_stamm_import" model="ir.ui.view">
+            <field name="name">Import Debitor/Creditor Data</field>
+            <field name="model">datev.import</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Import Debitor/Creditor Data" version="7.0">
+                    <field invisible="1" name="state"/>
+                    <field name="name" invisible="1"/>
+                    <group states="choose" string="Import Settings">
+                        <field name="data" required="1"/>
+                        <field name="creditor_type" required="1"/>
+                        <field name="debitor_type" required="1"/>
+                        <field name="creditor_parent_account_id" required="1" domain="[('user_type_id', '=', 'view')]"/>
+                        <field name="debitor_parent_account_id" required="1" domain="[('user_type_id', '=', 'view')]"/>
+                    </group>
+                    <div states="get">
+                        <h2>Import Completed</h2>
+                        <p>File successfully imported.</p>
+                        <p>
+                            <field name="count"/>
+                            lines imported
+                        </p>
+                        <group attrs="{'invisible': [('errors','=', False)]}">
+                            <h2>The following errors occurred:</h2>
+                            <p>
+                                <field name="errors" nolabel="1"/>
+                            </p>
+                        </group>
+                    </div>
+                    <footer states="choose">
+                        <button name="act_readfile" string="Import" type="object" class="oe_highlight"/>
+                        or
+                        <button special="cancel" string="Cancel" type="object" class="oe_link"/>
+                    </footer>
+                    <footer states="get">
+                        <button special="cancel" string="Close" type="object"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_wizard_stamm_import" model="ir.actions.act_window">
+            <field name="name">Import Debitor/Creditor Data</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">datev.import</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem name="Datev" id="menu_datev" parent="account.menu_finance"/>
+        <menuitem action="action_wizard_stamm_import" id="menu_wizard_stamm_import" parent="menu_datev"/>
+    </data>
+</odoo>

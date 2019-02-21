@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="syscoon_aok_account_account_view_form" model="ir.ui.view">
+            <field name="name">aok.account.account.view.form</field>
+            <field name="model">account.account</field>
+            <field name="inherit_id" ref="account.view_account_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='currency_id']" position="after">
+                    <field name="analytic_id_obligatory"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

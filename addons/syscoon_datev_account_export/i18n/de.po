@@ -1,0 +1,209 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#   * syscoon_datev_account_export
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-06-06 10:31+0000\n"
+"PO-Revision-Date: 2018-06-06 10:31+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: syscoon_datev_account_export
+#: model:ir.model,name:syscoon_datev_account_export.model_account_account
+msgid "Account"
+msgstr "Konto"
+
+#. module: syscoon_datev_account_export
+#: selection:datev.export,filter:0
+msgid "Alle"
+msgstr "Alle"
+
+#. module: syscoon_datev_account_export
+#: model:ir.ui.view,arch_db:syscoon_datev_account_export.wizard_user_export
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#. module: syscoon_datev_account_export
+#: model:ir.model,name:syscoon_datev_account_export.model_res_partner
+msgid "Contact"
+msgstr "Kontakt"
+
+#. module: syscoon_datev_account_export
+#: model:ir.model.fields,field_description:syscoon_datev_account_export.field_datev_import_count
+msgid "Count"
+msgstr "Anzahl"
+
+#. module: syscoon_datev_account_export
+#: model:ir.ui.menu,name:syscoon_datev_account_export.datev_export_wizard_menu
+msgid "Create DATEV Account Export"
+msgstr "DATEV Kontenexport"
+
+#. module: syscoon_datev_account_export
+#: model:ir.model.fields,field_description:syscoon_datev_account_export.field_datev_export_create_uid
+#: model:ir.model.fields,field_description:syscoon_datev_account_export.field_datev_import_create_uid
+msgid "Created by"
+msgstr "Erstellt von"
+
+#. module: syscoon_datev_account_export
+#: model:ir.model.fields,field_description:syscoon_datev_account_export.field_datev_export_create_date
+#: model:ir.model.fields,field_description:syscoon_datev_account_export.field_datev_import_create_date
+msgid "Created on"
+msgstr "Erstellt am"
+
+#. module: syscoon_datev_account_export
+#: model:ir.model.fields,field_description:syscoon_datev_account_export.field_datev_import_debitor_type
+msgid "Debitor Kontoart"
+msgstr "Debitor Kontoart"
+
+#. module: syscoon_datev_account_export
+#: model:ir.model.fields,field_description:syscoon_datev_account_export.field_datev_import_debitor_parent_account_id
+msgid "Debitor Oberkonto"
+msgstr "Debitor Oberkonto"
+
+#. module: syscoon_datev_account_export
+#: model:ir.model.fields,field_description:syscoon_datev_account_export.field_datev_export_display_name
+#: model:ir.model.fields,field_description:syscoon_datev_account_export.field_datev_import_display_name
+msgid "Display Name"
+msgstr "Anzeigename"
+
+#. module: syscoon_datev_account_export
+#: model:ir.model.fields,field_description:syscoon_datev_account_export.field_datev_import_errors
+msgid "Errors"
+msgstr "Fehler"
+
+#. module: syscoon_datev_account_export
+#: model:ir.ui.view,arch_db:syscoon_datev_account_export.wizard_user_export
+msgid "Export"
+msgstr "Export"
+
+#. module: syscoon_datev_account_export
+#: model:ir.ui.view,arch_db:syscoon_datev_account_export.wizard_user_export
+msgid "Export Completed"
+msgstr "Export vollständig"
+
+#. module: syscoon_datev_account_export
+#: model:ir.actions.act_window,name:syscoon_datev_account_export.action_wizard_user_export
+#: model:ir.ui.view,arch_db:syscoon_datev_account_export.wizard_user_export
+msgid "Export Debitor/Creditor Data"
+msgstr "Export Debitoren- Kreditoren-Daten"
+
+#. module: syscoon_datev_account_export
+#: model:ir.ui.view,arch_db:syscoon_datev_account_export.wizard_user_export
+msgid "Export Settings"
+msgstr "Export-Einstellungen"
+
+#. module: syscoon_datev_account_export
+#: code:addons/syscoon_datev_account_export/models/account.py:30
+#: model:ir.model.fields,field_description:syscoon_datev_account_export.field_account_account_datev_exported
+#, python-format
+msgid "Exported"
+msgstr "exportiert"
+
+#. module: syscoon_datev_account_export
+#: model:ir.ui.view,arch_db:syscoon_datev_account_export.wizard_user_export
+msgid "Exported File:"
+msgstr "Exportdatei:"
+
+#. module: syscoon_datev_account_export
+#: code:addons/syscoon_datev_account_export/models/partner.py:30
+#: model:ir.model.fields,field_description:syscoon_datev_account_export.field_res_partner_datev_exported
+#: model:ir.model.fields,field_description:syscoon_datev_account_export.field_res_users_datev_exported
+#, python-format
+msgid "Exported to DATEV"
+msgstr "Zu DATEV exportiert"
+
+#. module: syscoon_datev_account_export
+#: model:ir.model.fields,field_description:syscoon_datev_account_export.field_datev_export_data
+#: model:ir.model.fields,field_description:syscoon_datev_account_export.field_datev_import_data
+msgid "File"
+msgstr "Datei"
+
+#. module: syscoon_datev_account_export
+#: model:ir.model.fields,field_description:syscoon_datev_account_export.field_datev_export_name
+#: model:ir.model.fields,field_description:syscoon_datev_account_export.field_datev_import_name
+msgid "File Name"
+msgstr "Dateiname"
+
+#. module: syscoon_datev_account_export
+#: model:ir.model.fields,field_description:syscoon_datev_account_export.field_datev_export_id
+#: model:ir.model.fields,field_description:syscoon_datev_account_export.field_datev_import_id
+msgid "ID"
+msgstr "ID"
+
+#. module: syscoon_datev_account_export
+#: model:ir.model.fields,field_description:syscoon_datev_account_export.field_datev_import_creditor_type
+msgid "Kreditor Kontoart"
+msgstr "Kreditor Kontoart"
+
+#. module: syscoon_datev_account_export
+#: model:ir.model.fields,field_description:syscoon_datev_account_export.field_datev_import_creditor_parent_account_id
+msgid "Kreditor Oberkonto"
+msgstr "Kreditor Oberkonto"
+
+#. module: syscoon_datev_account_export
+#: model:ir.model.fields,field_description:syscoon_datev_account_export.field_datev_export___last_update
+#: model:ir.model.fields,field_description:syscoon_datev_account_export.field_datev_import___last_update
+msgid "Last Modified on"
+msgstr "Zuletzt geändert am"
+
+#. module: syscoon_datev_account_export
+#: model:ir.model.fields,field_description:syscoon_datev_account_export.field_datev_export_write_uid
+#: model:ir.model.fields,field_description:syscoon_datev_account_export.field_datev_import_write_uid
+msgid "Last Updated by"
+msgstr "Zuletzt aktualisiert durch"
+
+#. module: syscoon_datev_account_export
+#: model:ir.model.fields,field_description:syscoon_datev_account_export.field_datev_export_write_date
+#: model:ir.model.fields,field_description:syscoon_datev_account_export.field_datev_import_write_date
+msgid "Last Updated on"
+msgstr "Zuletzt aktualisiert am"
+
+#. module: syscoon_datev_account_export
+#: model:ir.ui.view,arch_db:syscoon_datev_account_export.wizard_user_export
+msgid "No data to export."
+msgstr "Keine Daten zum Exportieren."
+
+#. module: syscoon_datev_account_export
+#: selection:datev.export,filter:0
+msgid "Nur neue"
+msgstr "Nur neue"
+
+#. module: syscoon_datev_account_export
+#: model:ir.model.fields,field_description:syscoon_datev_account_export.field_datev_export_state
+#: model:ir.model.fields,field_description:syscoon_datev_account_export.field_datev_import_state
+msgid "State"
+msgstr "Status"
+
+#. module: syscoon_datev_account_export
+#: model:ir.model.fields,field_description:syscoon_datev_account_export.field_datev_export_filter
+msgid "Welche wollen Sie exportieren?"
+msgstr "Welche wollen Sie exportieren?"
+
+#. module: syscoon_datev_account_export
+#: selection:datev.export,state:0
+#: selection:datev.import,state:0
+msgid "choose"
+msgstr "wählen"
+
+#. module: syscoon_datev_account_export
+#: model:ir.model,name:syscoon_datev_account_export.model_datev_export
+msgid "datev.export"
+msgstr "datev.export"
+
+#. module: syscoon_datev_account_export
+#: model:ir.model,name:syscoon_datev_account_export.model_datev_import
+msgid "datev.import"
+msgstr "datev.import"
+
+#. module: syscoon_datev_account_export
+#: selection:datev.export,state:0
+#: selection:datev.import,state:0
+msgid "get"
+msgstr "erhalten"

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<template id="assets_backend" name="account assets" inherit_id="account.assets_backend">
+    <xpath expr="." position="inside">
+        <script type="text/javascript" src="/account_reconciliation_remove_same_type_constraint/static/src/js/reconciliation_action.js"></script>
+        <script type="text/javascript" src="/account_reconciliation_remove_same_type_constraint/static/src/js/reconciliation_model.js"></script>
+    </xpath>
+</template>
+
+</odoo>

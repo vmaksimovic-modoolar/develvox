@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="assets_backend_ept" name="Shipping Provider Assets Backend" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <link rel="stylesheet" href="/shipping_integration_ept/static/src/less/shipping_providers.less"/>
+        </xpath>
+    </template>
+</odoo>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>	
+	     <record id="shipment_instance_report_wizard_view" model="ir.ui.view">
+			<field name="name">shipment.instance.report.wizard.view</field>
+			<field name="model">shipment.report.ept</field>
+			<field name="arch" type="xml">
+				<form string="Shipment Report">				
+					<group col="4">
+						<field name="from_date" string="Date From" required="1" />
+						<field name="to_date" string="Date To" required="1"/>
+						<field name="carrier_id" string="Carrier"/>						
+					</group>
+					<footer>
+						<button name="get_report_action" string="Download"
+							type="object" class="oe_highlight"/>
+						or
+						<button string="_Close" class="oe_link" special="cancel" />
+					</footer>
+				</form>
+			</field>
+		</record>
+		<record id="shipment_instance_report_window_action" model="ir.actions.act_window">
+			<field name="name">Shipment Report</field>
+			<field name="res_model">shipment.report.ept</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">form</field>
+			<field name="target">new</field>
+			<field name="binding_model_id" ref="shipping_integration_ept.model_shipping_instance_ept" />
+		</record> 
+	     
+	</data>
+</odoo>

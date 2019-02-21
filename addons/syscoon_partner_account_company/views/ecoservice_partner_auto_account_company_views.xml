@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="ecoservice_partner_auto_account_company_form" model="ir.ui.view">
+          <field name="name">ecoservice.partner.auto.account.company.form</field>
+          <field name="model">ecoservice.partner.auto.account.company</field>
+          <field name="type">form</field>
+          <field name="arch" type="xml">
+            <form string="Automatic account generation">
+              <sheet>
+                <h1 class="mt0">
+                    <field name="name"/>
+                </h1>
+                <group>
+                    <field name="company_id" colspan="2"/>
+                    <field name="receivable_sequence_id"/>
+                    <field name="receivable_template_id" domain="[('user_type_id.type', '=', 'receivable'), ('company_id', '=', company_id)]"/>
+                    <field name="add_number_to_partner_ref"/>
+                    <field name="payable_sequence_id"/>
+                    <field name="payable_template_id" domain="[('user_type_id.type', '=', 'payable'), ('company_id', '=', company_id)]"/>
+                </group>
+              </sheet>
+            </form>
+          </field>
+        </record>
+
+        <record id="ecoservice_partner_auto_account_company_search" model="ir.ui.view">
+          <field name="name">ecoservice.partner.auto.account.company.search</field>
+          <field name="model">ecoservice.partner.auto.account.company</field>
+          <field name="type">search</field>
+          <field eval="7" name="priority"/>
+          <field name="arch" type="xml">
+            <search string="Automatic account generation">
+                <group col="10" colspan="4">
+                    <field name="company_id"/>
+                    <field name="receivable_sequence_id"/>
+                    <field name="receivable_template_id"/>
+                    <field name="payable_sequence_id"/>
+                    <field name="payable_template_id"/>
+                </group>
+            </search>
+          </field>
+        </record>
+
+        <record id="ecoservice_partner_auto_account_company_tree" model="ir.ui.view">
+          <field name="name">ecoservice.partner.auto.account.company.tree</field>
+          <field name="model">ecoservice.partner.auto.account.company</field>
+          <field name="type">tree</field>
+          <field eval="7" name="priority"/>
+          <field name="arch" type="xml">
+            <tree string="Automatic account generation">
+              <field name="company_id"/>
+              <field name="receivable_sequence_id"/>
+              <field name="receivable_template_id"/>
+              <field name="payable_sequence_id"/>
+              <field name="payable_template_id"/>
+            </tree>
+          </field>
+        </record>
+
+        <record id="ecoservice_partner_auto_account_company_action" model="ir.actions.act_window">
+          <field name="name">Automatic account generation</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">ecoservice.partner.auto.account.company</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="ecoservice_partner_auto_account_company_receivable" model="ir.ui.view">
+          <field name="name">ecoservice.partner.auto.account.company.partner</field>
+          <field name="model">res.partner</field>
+          <field name="type">form</field>
+          <field name="priority">2</field>
+          <field name="inherit_id" ref="account.view_partner_property_form"/>
+          <field name="arch" type="xml">
+            <field name="property_account_receivable_id" position="before">
+              <button name="create_accounts" type="object" string="Create Receivable Account"
+                      context="{'type': 'receivable'}" groups="account.group_account_invoice" colspan="2"/>
+            </field>
+          </field>
+        </record>
+
+        <record id="ecoservice_partner_auto_account_company_payable" model="ir.ui.view">
+          <field name="name">ecoservice.partner.auto.account.company.partner</field>
+          <field name="model">res.partner</field>
+          <field name="type">form</field>
+          <field name="priority">2</field>
+          <field name="inherit_id" ref="account.view_partner_property_form"/>
+          <field name="arch" type="xml">
+            <field name="property_account_payable_id" position="before">
+              <button name="create_accounts" type="object" string="Create Payable Account" context="{'type': 'payable'}"
+                      groups="account.group_account_invoice" colspan="2"/>
+            </field>
+          </field>
+        </record>
+
+        <menuitem action="ecoservice_partner_auto_account_company_action" id="ecoservice_partner_auto_account_company_menu"
+                  parent="account.account_management_menu" groups="account.group_account_invoice"/>
+
+    </data>
+</odoo>

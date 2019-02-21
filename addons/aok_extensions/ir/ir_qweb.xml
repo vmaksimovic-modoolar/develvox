@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+##############################################################################
+#
+# Copyright (c) 2018 - NOW Modoolar (http://modoolar.com) All Rights Reserved.
+#
+# WARNING: This program as such is intended to be used by professional
+# programmers who take the whole responsibility of assessing all potential
+# consequences resulting from its eventual inadequacies and bugs
+# End users who are looking for a ready-to-use solution with commercial
+# guarantees and support are strongly advised to contact support@modoolar.com
+#
+##############################################################################
+-->
+<odoo>
+    <template id="contact_name" inherit_id="base.contact_name">
+        <xpath expr="//t[@t-if='object.name']/span" position="replace">
+            <div itemprop="name" t-raw="name"/>
+        </xpath>
+    </template>
+</odoo>

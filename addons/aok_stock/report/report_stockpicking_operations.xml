@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<template id="report_picking_inherit" inherit_id="stock.report_picking">
+		<xpath expr="//thead/tr/th[1]" position="after">
+            <th><strong>Weight</strong></th>
+        </xpath>
+        <xpath expr="//tbody/tr/td/span[@t-field='o.state']/.." position="before">
+            <td>
+                <span t-field="o.weight"/>
+            </td>
+        </xpath>
+    </template>
+</odoo>

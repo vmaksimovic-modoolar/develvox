@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <function id="res_partner_lang_default_set"
+              model="ir.default" name="set"
+              eval="('res.partner', 'lang', 'de_DE')"/>
+
+    <function id="res_partner_country_default_set"
+              model="ir.default" name="set"
+              eval="('res.partner', 'country_id', ref('base.de'))"/>
+
+</odoo>

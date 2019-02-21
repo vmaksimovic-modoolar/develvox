@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+# This file is part of Odoo. The COPYRIGHT file at the top level of
+# this module contains the full copyright and licensing details.
+-->
+<openerp>
+  <data noupdate="1">
+
+    <record id="seq_eco_ecofi_vorlauf" model="ir.sequence">
+      <field name="name">DATEV Import</field>
+      <field name="code">datev.import.sequence</field>
+      <field name="prefix">IMP</field>
+      <field eval="1" name="number_next"/>
+      <field eval="1" name="number_increment"/>
+      <field eval="8" name="padding"/>
+    </record>
+
+  </data>
+</openerp>

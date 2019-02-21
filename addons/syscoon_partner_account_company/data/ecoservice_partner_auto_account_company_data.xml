@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data noupdate="1">
+
+       	<record id="partner_auto_account_company_receivable_sequence_type" model="ir.sequence">
+            <field eval="'partner.auto.receivable'" name="code"/>
+            <field eval="'Receivable'" name="name"/>
+            <field name="number_next">10000</field>
+        </record>
+
+       	<record id="partner_auto_account_company_payable_sequence_type" model="ir.sequence">
+            <field eval="'partner.auto.payable'" name="code"/>
+            <field eval="'Payable'" name="name"/>
+            <field name="number_next">70000</field>
+        </record>
+
+    </data>
+</odoo>

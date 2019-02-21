@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_move_line_tree_inherit_aok" model="ir.ui.view">
+        <field name="name">stock.move.line.tree.inherit.aok</field>
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock.view_move_line_tree"/>
+        <field name="arch" type="xml">
+            <field name="location_dest_id" position="after">
+                <field name="dangerous_goods_number"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_move_line_form_inherit_aok" model="ir.ui.view">
+        <field name="name">stock.move.line.form.inherit.aok</field>
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock.view_move_line_form"/>
+        <field name="arch" type="xml">
+            <field name="lot_id" position="before">
+                <field name="dangerous_goods_number"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="stock_move_line_expire_date_form_view" model="ir.ui.view">
+        <field name="name">stock.move.line.expire.date.form</field>
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock.view_move_line_form"/>
+        <field name="priority">10</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='lot_name']" position="after">
+                <field name="has_use_time" invisible='1'/>
+                <field name="lot_expire_date" attrs="{'readonly': [('in_entire_package', '=', True)], 'required': [('has_use_time', '=', True)]}" groups="stock.group_production_lot"/>
+            </xpath>
+      </field>
+    </record>
+
+    <!-- stock move line -->
+    <record id="stock_move_line_expire_date_tree_view" model="ir.ui.view">
+        <field name="name">stock.move.line.expire.date.tree</field>
+        <field name="model">stock.move.line</field>
+        <field name="inherit_id" ref="stock.view_stock_move_line_operation_tree"/>
+        <field name="priority">10</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='lot_name']" position="after">
+                <field name="has_use_time" invisible='1'/>
+                <field name="lot_expire_date" attrs="{'readonly': [('in_entire_package', '=', True)], 'required': [('has_use_time', '=', True)]}" invisible="not context.get('show_lots_text')" groups="stock.group_production_lot"/>
+            </xpath>
+      </field>
+    </record>
+
+</odoo>

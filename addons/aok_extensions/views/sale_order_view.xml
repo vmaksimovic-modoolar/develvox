@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+##############################################################################
+#
+# Copyright (c) 2018 - NOW Modoolar (http://modoolar.com) All Rights Reserved.
+#
+# WARNING: This program as such is intended to be used by professional
+# programmers who take the whole responsibility of assessing all potential
+# consequences resulting from its eventual inadequacies and bugs
+# End users who are looking for a ready-to-use solution with commercial
+# guarantees and support are strongly advised to contract support@modoolar.com
+#
+##############################################################################
+-->
+<odoo>
+
+    <record id="view_order_barcode_form" model="ir.ui.view">
+        <field name="name">sale.order.barcode.form</field>
+        <field name="model">sale.order.barcode</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-check">
+                            <field name="active" widget="boolean_button" options='{"terminology": "active"}'/>
+                        </button>
+                    </div>
+                    <label for="name" class="oe_edit_only" string="Barcode"/>
+                    <h1>
+                        <field name="name"/>
+                    </h1>
+                    <notebook>
+                        <page string="Sale Orders">
+                            <field name="order_ids" nolabel="1" />
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_order_barcode_tree" model="ir.ui.view">
+        <field name="name">sale.order.barcode.tree</field>
+        <field name="model">sale.order.barcode</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_order_barcode" model="ir.actions.act_window">
+        <field name="name">Sale Order Barcode</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.order.barcode</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to create a new sale order barcode.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="menu_sale_barcodes"
+        name="Barcodes"
+        parent="sale.menu_sale_config"
+        sequence="20"/>
+
+    <menuitem id="menu_sale_order_barcodes"
+        name="Sale Order Barcodes"
+        parent="menu_sale_barcodes"
+        action="action_order_barcode"
+        sequence="10"/>
+
+    <record id="view_sales_order_filter_inherit_aok" model="ir.ui.view">
+        <field name="name">sale.order.list.select.inherit.aok</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+        <field name="arch" type="xml">
+            <field name="product_id" position="after">
+                <field name="contact_person_id"/>
+                <field name="barcode_id"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="account_invoice_form_inherit_aok" model="ir.ui.view">
+        <field name="name">account.invoice.form.inherit.aok</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_form"/>
+        <field name="arch" type="xml">
+            <field name="payment_term_id" position="before">
+                <field name="contact_person_id" />
+            </field>
+        </field>
+    </record>
+
+    <record id="action_quoatation_sale_lines" model="ir.actions.act_window">
+        <field name="name">Quotation and Sales Order Lines</field>
+        <field name="res_model">sale.order.line</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_type">form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Create a new Quotation or Sale Order line.
+            </p>
+        </field>
+    </record>
+
+    <record id="view_sale_order_form_inherit_aok" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit.aok</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="aok_stock.view_sale_order_form_inherit_aok"/>
+        <field name="arch" type="xml">
+            <field name="client_order_ref" position="after">
+                <field name="subs_from"/>
+                <field name="subs_to"/>
+            </field>
+            <field name="partner_shipping_id" position="after">
+                <field name="contact_person_id"/>
+                <field name="barcode_id"/>
+            </field>
+            <field name="picking_note" position="after">
+                <field name="delivery_note"/>
+            </field>
+        </field>
+    </record>
+
+    <menuitem id="menu_quoatation_sale_order"
+              name="Quotation and Sales Order Lines"
+              action="action_quoatation_sale_lines"
+              parent="sale.sale_order_menu"
+              sequence="2" groups="sales_team.group_sale_salesman"/>
+
+</odoo>

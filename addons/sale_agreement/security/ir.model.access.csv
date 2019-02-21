@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sale_agreement,access_sale_agreement,model_sale_agreement,,1,1,1,1
+access_sale_agreement_line,access_sale_agreement_line,model_sale_agreement_line,,1,1,1,1
+access_sale_agreement_type,access_sale_agreement_type,model_sale_agreement_type,,1,1,1,1
+access_sale_agreement_tags,access_sale_agreement_tags,model_sale_agreement_tags,,1,1,1,1

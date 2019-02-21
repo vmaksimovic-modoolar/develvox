@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_delivery_carrier_dpd_form_view_ept" model="ir.ui.view">
+        <field name="name">delivery.carrier.DPD.form.view.ept</field>
+        <field name="model">delivery.carrier</field>
+        <field name="inherit_id" ref="delivery.view_delivery_carrier_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[1]" position="before">
+                <page string="Pricing"
+                      attrs="{'invisible': [('delivery_type', 'not in', ['dpd_ept'])]}">
+                    <group attrs="{'invisible':['|',('delivery_type', '==', 'base_on_rule'),('delivery_type_dpd_cloud_ept', '==', 'base_on_rule_ept')]}">
+                        <group>
+                            <field name="fixed_price"/>
+                        </group>
+                    </group>
+                    <group name="general"
+                           attrs="{'invisible':['|',('delivery_type', '==', 'fixed'),('delivery_type_dpd_cloud_ept', '==', 'fixed_ept')]}">
+                        <field name="price_rule_ids" nolabel="1"/>
+                    </group>
+                </page>
+            </xpath>
+            
+            <xpath expr="//field[@name='shipping_instance_id']" position="after">
+                <field name="delivery_type_dpd_cloud_ept" widget="radio"
+                       attrs="{'invisible': [('delivery_type', '!=', 'dpd_ept')], 'required': [('delivery_type', '==', 'dpd_ept')]}"/>
+            </xpath>
+
+            <xpath expr="//page[@name='destination']" position='before'>
+                <page string="Configuration" name="dpd_configuration"
+                      attrs="{'invisible': [('delivery_type', '!=', 'dpd_ept')]}">
+                    <p class="alert alert-danger" attrs="{'invisible' : [('delivery_type', '!=', 'dpd_ept')]}">
+                        Note : Weight UOM must be select KG in DPD Cloud Shipping paket provider.
+                    </p>
+                    <group>
+                        <field name="dpd_shipping_language" attrs="{'required': [('delivery_type', '=', 'dpd_ept')]}" />
+                        <field name="dpd_service_type" attrs="{'required': [('delivery_type', '=', 'dpd_ept')]}"/>
+                        <field name="dpd_shipping_label_size"
+                               attrs="{'required': [('delivery_type', '=', 'dpd_ept')]}"/>
+                        <field name="dpd_shipping_label_position"
+                               attrs="{'required': [('delivery_type', '=', 'dpd_ept')]}"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

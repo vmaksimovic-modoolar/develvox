@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+##############################################################################
+#
+# Copyright (c) 2018 - NOW Modoolar (http://modoolar.com) All Rights Reserved.
+#
+# WARNING: This program as such is intended to be used by professional
+# programmers who take the whole responsibility of assessing all potential
+# consequences resulting from its eventual inadequacies and bugs
+# End users who are looking for a ready-to-use solution with commercial
+# guarantees and support are strongly advised to contract support@modoolar.com
+#
+##############################################################################
+-->
+<odoo>
+
+    <record id="view_attachment_tree" model="ir.ui.view">
+        <field name="name">Attachment files only tree</field>
+        <field name="model">ir.attachment</field>
+        <field name="priority">100</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" string="Name"/>
+                <field name="external_type" invisible="1"/>
+                <field name="description"/>
+                <field name="write_date" string="Upload Date"/>
+                <field name="datas" filename="datas_fname" widget="FieldBinary" string="Image"/>
+                <field name="datas_fname" invisible="1"/>
+                <field name="url" widget="url"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_attachment_form" model="ir.ui.view">
+        <field name="name">Attachment files only form</field>
+        <field name="model">ir.attachment</field>
+        <field name="priority">100</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <label for="name" class="oe_edit_only" string="Name"/>
+                    <h1>
+                        <field name="name"/>
+                    </h1>
+                    <group>
+                        <group>
+                            <field name="type"/>
+                            <field name="write_date" string="Upload Date" readonly="1" class="oe_read_only oe_inline"/>
+                            <field name="external_type" invisible="1"/>
+                        </group>
+                        <group>
+                            <field name="res_model" readonly="0" invisible="1"/>
+                            <field name="res_field" invisible="1"/>
+                            <field name="res_id" invisible="1"/>
+                            <field name="res_name" invisible="1"/>
+                            <field name="datas" filename="datas_fname" attrs="{'invisible':[('type','=','url')]}"/>
+                            <field name="datas_fname" invisible="1" attrs="{'invisible':[('type','=','url')]}"
+                                   class="oe_inline oe_right"/>
+                            <field name="url" widget="url" attrs="{'invisible':[('type','=','binary')]}"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="description"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="product_template_only_form_view_inherited_product_documents" model="ir.ui.view">
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page name="internal_media" string="Internal Media">
+                    <separator string="Various Information" for="url_attachment_ids"/>
+                    <field name="url_attachment_ids"
+                           context="{
+                                'default_res_model': 'product.template',
+                                'default_res_id': active_id ,
+                                'default_type': 'url',
+                                'form_view_ref': 'aok_extensions.view_attachment_form',
+                                'tree_view_ref': 'aok_extensions.view_attachment_tree'
+                            }">
+                    </field>
+
+                    <separator string="Various files" for="file_attachment_ids"/>
+                    <field name="file_attachment_ids"
+                           context="{
+                                'default_res_model': 'product.template',
+                                'default_res_id': active_id ,
+                                'default_type': 'binary',
+                                'form_view_ref': 'aok_extensions.view_attachment_form',
+                                'tree_view_ref': 'aok_extensions.view_attachment_tree'
+                            }">
+
+                    </field>
+
+                    <separator string="Product Performance" for="product_performance"/>
+                    <field name="product_performance"/>
+                </page>
+                <page name="external_media" string="External Media">
+                    <separator string="Shop Videos" for="ext_doc_video_ids"/>
+                    <field name="ext_doc_video_ids"
+                           context="{
+                                'default_res_model': 'product.template',
+                                'default_res_id': active_id ,
+                                'default_type': 'url',
+                                'default_external_type': 'video',
+                                'form_view_ref': 'aok_extensions.view_attachment_form',
+                                'tree_view_ref': 'aok_extensions.view_attachment_tree'
+                            }">
+
+                    </field>
+
+                    <separator string="Shop Photos" for="ext_doc_image_ids"/>
+                    <field name="ext_doc_image_ids"
+                           context="{
+                                'default_res_model': 'product.template',
+                                'default_res_id': active_id ,
+                                'default_type': 'url',
+                                'default_external_type': 'image',
+                                'form_view_ref': 'aok_extensions.view_attachment_form',
+                                'tree_view_ref': 'aok_extensions.view_attachment_tree'
+                            }">
+
+                    </field>
+
+                    <separator string="Shop Documents" for="ext_doc_documents_ids"/>
+                    <field name="ext_doc_documents_ids"
+                           context="{
+                                'default_res_model': 'product.template',
+                                'default_res_id': active_id ,
+                                'default_type': 'url',
+                                'default_external_type': 'document',
+                                'form_view_ref': 'aok_extensions.view_attachment_form',
+                                'tree_view_ref': 'aok_extensions.view_attachment_tree'
+                            }">
+
+                    </field>
+                </page>
+            </notebook>
+        </field>
+    </record>
+
+    <record id="product_normal_only_form_view_inherited_product_documents" model="ir.ui.view">
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <notebook position="inside">
+                <page name="internal_media" string="Internal Media">
+                    <separator string="Various Information" for="url_attachment_prod_ids"/>
+                    <field name="url_attachment_prod_ids"
+                           context="{
+                                'default_res_model': 'product.product',
+                                'default_res_id': active_id ,
+                                'default_type': 'url',
+                                'form_view_ref': 'aok_extensions.view_attachment_form',
+                                'tree_view_ref': 'aok_extensions.view_attachment_tree'
+                            }">
+                    </field>
+
+                    <separator string="Various files" for="file_attachment_ids"/>
+                    <field name="file_attachment_prod_ids"
+                           context="{
+                                'default_res_model': 'product.product',
+                                'default_res_id': active_id ,
+                                'default_type': 'binary',
+                                'form_view_ref': 'aok_extensions.view_attachment_form',
+                                'tree_view_ref': 'aok_extensions.view_attachment_tree'
+                            }">
+
+                    </field>
+
+                    <separator string="Product Performance" for="product_prod_performance"/>
+                    <field name="product_prod_performance"/>
+                </page>
+
+                <page name="external_media" string="External Media">
+                    <separator string="Shop Videos" for="ext_doc_video_prod_ids"/>
+                    <field name="ext_doc_video_prod_ids"
+                           context="{
+                                'default_res_model': 'product.product',
+                                'default_res_id': active_id ,
+                                'default_type': 'url',
+                                'default_external_type': 'video',
+                                'form_view_ref': 'aok_extensions.view_attachment_form',
+                                'tree_view_ref': 'aok_extensions.view_attachment_tree'
+                            }">
+
+                    </field>
+
+                    <separator string="Shop Photos" for="ext_doc_image_prod_ids"/>
+                    <field name="ext_doc_image_prod_ids"
+                           context="{
+                                'default_res_model': 'product.product',
+                                'default_res_id': active_id ,
+                                'default_type': 'url',
+                                'default_external_type': 'image',
+                                'form_view_ref': 'aok_extensions.view_attachment_form',
+                                'tree_view_ref': 'aok_extensions.view_attachment_tree'
+                            }">
+
+                    </field>
+
+                    <separator string="Shop Documents" for="ext_doc_documents_prod_ids"/>
+                    <field name="ext_doc_documents_prod_ids"
+                           context="{
+                                'default_res_model': 'product.product',
+                                'default_res_id': active_id ,
+                                'default_type': 'url',
+                                'default_external_type': 'document',
+                                'form_view_ref': 'aok_extensions.view_attachment_form',
+                                'tree_view_ref': 'aok_extensions.view_attachment_tree'
+                            }">
+
+                    </field>
+                </page>
+            </notebook>
+        </field>
+    </record>
+
+
+     <record id="product_normal_only_form_view_inherited_pricilist" model="ir.ui.view">
+        <field name="name">product.product.pricelist</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <div name="pricelist_item" position="after">
+                <div name="variant_pricelist_item" groups="aok_extensions.group_variant_pricelist">
+                    <separator string="Pricelist Items"/>
+                    <field name="variant_pricelist_ids" nolabel="1"
+                           context="{'default_applied_on' :'0_product_variant'}">
+                        <tree string="Pricelist Items" editable="bottom">
+                            <field name="pricelist_id" string="Pricelist" required="1"/>
+                            <field name="fixed_price" string="Price" required="1"/>
+                            <field name="min_quantity"/>
+                            <field name="date_start"/>
+                            <field name="date_end"/>
+                            <field name="applied_on" invisible="1"/>
+                        </tree>
+                    </field>
+                </div>
+            </div>
+        </field>
+     </record>
+</odoo>

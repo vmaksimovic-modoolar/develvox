@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="syscoon_financeinterface_bookingform_wizard" model="ir.ui.view">
+            <field name="name">syscoon.financeinterface.bookingform.wizard</field>
+            <field name="model">syscoon.financeinterface.bookingform.wizard</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Bookingform">
+                    <sheet>
+                        <div style="margin-left: auto; margin-right: auto;">
+                            <div>
+                                <field name="doctype" style="width:20px !important; margin-right:10px;" class="oe_inline"/>
+                                <field name="date" style="width:60px !important; margin-right:10px;" class="oe_inline"/>
+                                <field name="ref" style="width:140px !important; margin-right:10px;" class="oe_inline"/>
+                                <field name="external_ref" style="width:140px !important; margin-right:10px;" class="oe_inline"/>
+                                <field name="counteraccount" style="width:100px !important; margin-right:10px;" class="oe_inline"/>
+                                <field name="account" style="width:100px !important; margin-right:10px;" class="oe_inline"/>
+                                <field name="tax" style="width:40px !important; margin-right:10px;" class="oe_inline"/>
+                            </div>
+                            <div>
+                                <label for="doctype" string="BA" style="width:20px !important; margin-right:10px;"/>
+                                <label for="date" string="BelegDt" style="width:60px !important; margin-right:10px;"/>
+                                <label for="ref" string="BelegNr" style="width:140px !important; margin-right:10px;"/>
+                                <label for="external_ref" string="FrmdBel" style="width:140px !important; margin-right:10px;"/>
+                                <label for="counteraccount" string="GegenKto (H)" style="width:100px !important; margin-right:10px;"/>
+                                <label for="account" string="Konto (S)" style="width:100px !important; margin-right:10px;"/>
+                                <label for="tax" string="BSchl" style="width:40px !important; margin-right:10px;"/>
+                            </div>
+                            <div style="margin-top:40px;">
+                                <field name="amount" style="width:140px !important; margin-right:10px;" class="oe_inline"/>
+                                <field name="currency_id" style="width:60px !important; margin-right:10px;" options="{'no_create_edit': True, 'no_create':True, 'no_open':True}" groups="base.group_multi_currency" class="oe_inline"/>
+                                <field name="analytic_account" style="width:60px !important; margin-right:10px;" class="oe_inline"/>
+                                <field name="analytic_tag" style="width:60px !important; margin-right:10px;" class="oe_inline"/>
+                                <field name="text" style="width:300px !important; margin-right:10px;" class="oe_inline"/>
+                            </div>
+                            <div>
+                                <label for="amount" string="Betrag" style="width:140px !important; margin-right:10px;"/>
+                                <label for="currency_id" string ="Währung" groups="base.group_multi_currency" style="width:60px !important; margin-right:10px;"/>
+                                <label for="analytic_account" string="Kost1" style="width:60px !important; margin-right:10px;"/>
+                                <label for="analytic_tag" string="Kost2" style="width:60px !important; margin-right:10px;"/>
+                                <label for="text" string="Buchungstext" style="width:300px !important; margin-right:10px;"/>
+                            </div>
+                        </div>
+                        <group groups="base.group_no_one">
+                            <group>
+                                <field name="move_type"/>
+                                <field name="account_id"/>
+                                <field name="counteraccount_id"/>
+                                <field name="tax_id"/>
+                                <field name="amount_float"/>
+                            </group>
+                            <group>
+                                <field name="analytic_id"/>
+                                <field name="analytic_tag_id"/>
+                                <field name="partner_id"/>
+                                <field name="move_date"/>
+                                <field name="company_id"/>
+                                <field name="user_id"/>
+                            </group>
+                        </group>
+                        <group>
+                            <field name="booking_line_ids" nolabel="1">
+                                <tree string="Lines">
+                                    <field name="move_date"/>
+                                    <field name="ref"/>
+                                    <field name="external_ref"/>
+                                    <field name="account_id"/>
+                                    <field name="counteraccount_id"/>
+                                    <field name="tax_id"/>
+                                    <field name="amount_float"/>
+                                    <field name="analytic_id"/>
+                                    <field name="analytic_tag_id"/>
+                                    <button name="delete_line" type="object" string="delete"/>
+                                </tree>
+                            </field>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="remaining_amount"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button name="action_create" type="object" string="Create Move" accesskey="C"/>
+                        <button name="action_split" type="object" string="Split Move" accesskey="S"/>
+                        <button name="action_create_split" type="object" string="Create Split Move" accesskey="X"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_syscoon_financeinterface_bookingform_wizard" model="ir.actions.act_window">
+            <field name="name">Bookingform</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">syscoon.financeinterface.bookingform.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="syscoon_financeinterface_bookingform_wizard"/>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="menu_syscoon_financeinterface_bookingform" parent="syscoon_financeinterface.menu_finance_interface"
+            name="Bookingform" action="action_syscoon_financeinterface_bookingform_wizard"
+            sequence="4" groups="account.group_account_user"/>
+
+    </data>
+</odoo>

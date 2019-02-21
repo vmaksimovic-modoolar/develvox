@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_account_invoice_form_inherit_aok" model="ir.ui.view">
+        <field name="name">account.invoice.form.inherit.aok</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_supplier_form"/>
+        <field name="arch" type="xml">
+            <field name="number" position="replace">
+                <field name="number" required="1" class="oe_inline"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_customer_invoice_form_inherit_aok" model="ir.ui.view">
+        <field name="name">account.customer.form.inherit.aok</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_form"/>
+        <field name="arch" type="xml">
+            <field name="team_id" position="after">
+                <field name="subscription_id" string="Verkauf über Abonnement"/>
+            </field>
+            <field name="payment_term_id" position="before">
+                <field name="job_number"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_sale_order_form_inherit_aok_account" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit.aok.account</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <field name="partner_shipping_id" position="after">
+                <field name="job_number"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

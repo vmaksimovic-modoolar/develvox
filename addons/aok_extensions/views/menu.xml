@@ -1,0 +1,36 @@
+<odoo>
+
+    <record id="product_status_form_action" model="ir.actions.act_window">
+        <field name="name">Product Status</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.template.status</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to add a new product template status.
+            </p>
+        </field>
+    </record>
+
+    <record id="res_partner_sales_territory_action" model="ir.actions.act_window">
+        <field name="name">Sales Territory</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.partner.territory</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create"/>
+        </field>
+    </record>
+
+    <menuitem action="product_status_form_action"
+              id="menu_product_status_form_action"
+              parent="sale.prod_config_main" sequence="9"/>
+
+    <menuitem id="res_partner_sales_territory_menu" name="Sales Territory"
+              action="res_partner_sales_territory_action"
+              parent="contacts.res_partner_menu_config"
+              sequence="4"/>
+
+</odoo>

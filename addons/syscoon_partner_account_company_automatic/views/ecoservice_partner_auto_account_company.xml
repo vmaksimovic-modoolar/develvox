@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="inherit_auto_accunt_form" model="ir.ui.view">
+            <field name="name">inherit.auto.account.form</field>
+            <field name="model">ecoservice.partner.auto.account.company</field>
+            <field name="inherit_id" ref="syscoon_partner_account_company.ecoservice_partner_auto_account_company_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group" position="inside">
+                    <field name="create_auto_account_on"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

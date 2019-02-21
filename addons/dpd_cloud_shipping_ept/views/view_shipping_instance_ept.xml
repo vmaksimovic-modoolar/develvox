@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="view_dpd_configuration" model="ir.ui.view">
+		<field name="name">DPD Configuration View</field>
+		<field name="model">shipping.instance.ept</field>
+		<field name="type">form</field>
+		<field name="inherit_id" ref="shipping_integration_ept.view_shipping_integration"></field>
+		<field name="arch" type="xml">
+			<xpath expr="//notebook/page[@name='credential']/group" position="inside">
+				<group attrs="{'invisible': [('provider', '!=', 'dpd_ept')]}">
+						<field name="cloud_user_id" attrs="{'required':[('provider','=','dpd_ept')]}"></field> 
+						<field name="user_token" attrs="{'required':[('provider','=','dpd_ept')]}"></field>
+						<field name="partner_name" attrs="{'required':[('provider','=','dpd_ept')]}"></field> 
+						<field name="partner_token" attrs="{'required':[('provider','=','dpd_ept')]}"></field> 
+						<field name="dpd_url" attrs="{'required':[('provider','=','dpd_ept')]}"></field> 
+				</group>
+			</xpath>
+		</field>
+	</record>
+</odoo>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="syscoon_bookingform_accoun_tax_form" model="ir.ui.view">
+        <field name="name">syscoon.bookingform.account.tax.form</field>
+        <field name="model">account.tax</field>
+        <field name="inherit_id" ref="account.view_tax_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="bookingform_taxkey"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

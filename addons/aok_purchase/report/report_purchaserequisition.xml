@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_purchaserequisitions_inherit" inherit_id="purchase_requisition.report_purchaserequisitions">
+        <xpath expr="//span[@t-field='line_ids.product_id.name']" position="after">
+            <br/>
+            <t t-if="line_ids.product_id.checklist_ids">
+                <t t-foreach="line_ids.product_id.checklist_ids" t-as="checklist">
+                    <span><t t-esc="checklist.name"/> - <t t-esc="checklist.value"/></span><br/>
+                </t>
+            </t>
+        </xpath>
+    </template>
+
+</odoo>

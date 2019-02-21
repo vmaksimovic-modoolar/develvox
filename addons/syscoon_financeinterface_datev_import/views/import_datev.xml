@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+# This file is part of Odoo. The COPYRIGHT file at the top level of
+# this module contains the full copyright and licensing details.
+-->
+<openerp>
+  <data>
+
+    <record model="ir.ui.view" id="import_datev_log_form_view">
+      <field name="name">import.datev.log.form</field>
+      <field name="model">import.datev.log</field>
+      <field name="type">form</field>
+      <field name="arch" type="xml">
+        <form string="Logzeilen">s
+          <group>
+            <field name="date" select="1" colspan="4"/>
+            <field name="name" select="1" colspan="4"/>
+            <field name="state" select="1" colspan="4"/>
+          </group>
+        </form>
+      </field>
+    </record>
+    <record model="ir.ui.view" id="import_datev_log_tree_view">
+      <field name="name">import.datev.log.tree</field>
+      <field name="model">import.datev.log</field>
+      <field name="type">tree</field>
+      <field name="arch" type="xml">
+        <tree string="Lines" colors="red:state=='error';blue:state=='info';darkgreen:state=='standard';">
+          <field name="date"/>
+          <field name="name"/>
+          <field name="state"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="import_datev_form_view">
+        <field name="name">import.datev.form</field>
+        <field name="model">import.datev</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="Datev Import">
+                <header>
+                    <button string="Import" name="do_import" type="object" states="draft,error"/>
+                    <button string="Confirm" name="confirm_booking" type="object" states="imported,booking_error"/>
+                    <button string="Reset" name="reset_import" type="object"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet string="Datev Import">
+                    <group>
+                        <field name="name"/>
+                        <field name="description"/>
+                        <field name="company_id"/>
+                        <field name="datev_ascii_file"/>
+                        <field name="start_date"/>
+                        <field name="end_date"/>
+                        <field name="journal_id"/>
+                        <field name="one_move"/>
+                    </group>
+                    <notebook colspan="4">
+                        <page string="Datev Import Log">
+                            <field colspan="4" name="log_line"/>
+                        </page>
+                        <page string="Moves">
+                            <field colspan="4" name="account_moves"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="import_datev_tree_view">
+      <field name="name">import.datev.tree</field>
+      <field name="model">import.datev</field>
+      <field name="type">tree</field>
+      <field name="arch" type="xml">
+        <tree string="Datev Import" colors="red:state=='error',red:state=='booking_error';darkgreen:state=='imported';blue:state=='draft';">
+          <field name="name"/>
+          <field name="description"/>
+          <field name="company_id"/>
+          <field name="start_date"/>
+          <field name="end_date"/>
+          <field name="journal_id"/>
+          <field name="state"/>
+        </tree>
+      </field>
+    </record>
+
+  </data>
+</openerp>
