@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<odoo>
-
-    <record forcecreate="True" id="decimal_standard_price" model="decimal.precision">
-        <field name="name">Standard Price</field>
-        <field name="digits">10</field>
-    </record>
-
-</odoo>

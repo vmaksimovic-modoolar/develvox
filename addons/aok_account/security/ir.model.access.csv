@@ -1,4 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_account_payment_line_discount,access_account_payment_line_discount,model_account_payment_line_discount,,1,1,1,1
-access_account_invoice_tax_aok,access_account_invoice_tax_aok,model_account_invoice_tax_aok,,1,1,1,1
-access_insurance_status,access_insurance_status,model_insurance_status,,1,1,1,1

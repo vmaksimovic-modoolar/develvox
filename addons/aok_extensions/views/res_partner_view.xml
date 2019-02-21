@@ -13,21 +13,11 @@
 ##############################################################################
 -->
 <odoo>
-
     <record id="res_partner_view_form_inherit_aok" model="ir.ui.view">
         <field name="name">res.partner.view.form.inherit.aok</field>
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
-            <field name="user_id" position="after">
-                <field name="sales_territory_id" options="{'no_create': True, 'no_create_edit':True}"/>
-                <field name="free_of_charge"/>
-                <field name="no_magazines"/>
-                <field name="no_magazines_aok_service"/>
-                <field name="sum_no_magazines"/>
-                <field name="sum_no_magazines_aok_service"/>
-            </field>
-
             <xpath expr="//h1//field[@name='name']/.." position="after">
                 <group attrs="{'invisible': [('parent_id', '!=', False)]}">
                     <field name="name_1"/>
@@ -35,134 +25,6 @@
                     <field name="name_3"/>
                 </group>
             </xpath>
-
-            <xpath expr="//div[hasclass('o_address_format')]/div[hasclass('oe_edit_only')]" position="attributes">
-                <attribute name="attrs">{'invisible': 1}</attribute>
-            </xpath>
-
-
-            <xpath expr="//field[@name='street']" position="attributes">
-                <attribute name="attrs">{'readonly': 0}</attribute>
-            </xpath>
-            <xpath expr="//field[@name='street2']" position="attributes">
-                <attribute name="attrs">{'readonly': 0}</attribute>
-            </xpath>
-
-            <xpath expr="//field[@name='city']" position="attributes">
-                <attribute name="attrs">{'readonly': 0}</attribute>
-            </xpath>
-
-            <xpath expr="//field[@name='state_id']" position="attributes">
-                <attribute name="attrs">{'readonly': 0}</attribute>
-            </xpath>
-
-            <xpath expr="//field[@name='zip']" position="attributes">
-                <attribute name="attrs">{'readonly': 0}</attribute>
-            </xpath>
-
-            <xpath expr="//field[@name='country_id']" position="attributes">
-                <attribute name="attrs">{'readonly': 0}</attribute>
-            </xpath>
-
-            <xpath expr="//notebook[1]/page[@autofocus='autofocus']/field/form[1]/sheet[1]/group[1]/group[1]"
-                   position="attributes">
-                <attribute name="attrs">{'invisible': 0}</attribute>
-            </xpath>
-
-            <field name="category_id" position="after">
-                <field name="crm_lead"
-                       attrs="{'invisible': [('customer', '=', False)]}"/>
-            </field>
-
-            <field name="parent_id" position="attributes">
-                <attribute name="invisible">0</attribute>
-                <attribute name="attrs">{'invisible': 0}</attribute>
-            </field>
-
-            <notebook position="inside">
-                <page string="Encasing"
-                      attrs="{'invisible': [('customer', '=', False)]}">
-                    <group>
-                        <group>
-                            <field name="enc_name"/>
-                            <field name="enc_lastname"/>
-                            <field name="enc_date"/>
-                            <field name="enc_insurance_number"/>
-                            <field name="enc_insurance_status"/>
-                        </group>
-                    </group>
-                </page>
-            </notebook>
-
         </field>
     </record>
-
-    <record id="view_res_partner_filter_inherit_aok" model="ir.ui.view">
-        <field name="name">res.partner.select.inherit.aok</field>
-        <field name="model">res.partner</field>
-        <field name="inherit_id" ref="base.view_res_partner_filter"/>
-        <field name="arch" type="xml">
-            <filter name="inactive" position="after">
-                <separator/>
-                <filter name="active_send_list" string="Send list(active)"
-                        domain="[('send_list', '=', True)]"/>
-                <filter name="inactive_send_list" string="Send list(inactive)"
-                        domain="[('send_list','=', False)]"/>
-            </filter>
-
-            <filter name="customer" position="attributes">
-                <attribute name="domain">[('customer','=',1), ('type', '=', 'contact')]</attribute>
-            </filter>
-        </field>
-    </record>
-
-    <record id="action_partner_sale_list" model="ir.actions.act_window">
-        <field name="name">Sales Order Lines</field>
-        <field name="res_model">sale.order.line</field>
-        <field name="view_type">form</field>
-        <field name="view_mode">tree,form</field>
-        <field name="domain">[('order_id.partner_id.id','child_of',
-            active_id),('order_id.state', '!=', 'cancel')]
-        </field>
-    </record>
-
-    <record id="res_partner_view_buttons" model="ir.ui.view">
-        <field name="name">res.partner.view.buttons.aok.inherit</field>
-        <field name="model">res.partner</field>
-        <field name="inherit_id" ref="sale.res_partner_view_buttons"/>
-        <field name="arch" type="xml">
-            <xpath expr="//field[@name='sale_order_count']/ancestor::button[hasclass('oe_stat_button')]"
-                   position="attributes">
-                <attribute name="name">
-                    %(aok_extensions.action_partner_sale_list)d
-                </attribute>
-            </xpath>
-        </field>
-    </record>
-
-    <record id="view_partner_tree_inherit_aok" model="ir.ui.view">
-        <field name="name">partner.tree.inherit.aok</field>
-        <field name="model">res.partner</field>
-        <field name="inherit_id" ref="base.view_partner_tree"/>
-        <field name="arch" type="xml">
-            <field name="display_name" position="before">
-                <field name="ref"/>
-            </field>
-            <field name="phone" position="before">
-                <field name="aok_address"/>
-            </field>
-        </field>
-    </record>
-
-    <record id="res_partner_kanban_view" model="ir.ui.view">
-        <field name="name">res.partner.kanban.inherit.aok</field>
-        <field name="model">res.partner</field>
-        <field name="inherit_id" ref="base.res_partner_kanban_view"/>
-        <field name="arch" type="xml">
-            <xpath expr="//div[hasclass('oe_kanban_details')]/ul//field[@name='parent_id']/.." position="attributes">
-                <attribute name="invisible">1</attribute>
-            </xpath>
-        </field>
-    </record>
-
 </odoo>
