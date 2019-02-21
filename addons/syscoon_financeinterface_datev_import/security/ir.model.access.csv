@@ -1,5 +1,0 @@
-"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
-"access_import_datev","import.datev","model_import_datev","syscoon_financeinterface.group_ecofi_financeinterface",1,1,1,1
-"access_import_datev_log","import.datev.log","model_import_datev_log","syscoon_financeinterface.group_ecofi_financeinterface",1,1,1,1
-"access_import_datev_config","import.datev.config","model_import_datev_config","syscoon_financeinterface.group_ecofi_financeinterface",1,0,0,0
-"access_import_datev_config_rows","import.datev.config.rows","model_import_datev_config_rows","syscoon_financeinterface.group_ecofi_financeinterface",1,0,0,0
