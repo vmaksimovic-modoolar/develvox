@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+##############################################################################
+#
+# Copyright (c) 2018 - NOW Modoolar (http://modoolar.com) All Rights Reserved.
+#
+# WARNING: This program as such is intended to be used by professional
+# programmers who take the whole responsibility of assessing all potential
+# consequences resulting from its eventual inadequacies and bugs
+# End users who are looking for a ready-to-use solution with commercial
+# guarantees and support are strongly advised to contract support@modoolar.com
+#
+##############################################################################
+-->
+<odoo>
+    <data noupdate="1">
+
+        <!-- Product internal reference -->
+        <record id="sequence_product_internal_ref_seq" model="ir.sequence">
+            <field name="name">Product Internal Reference sequence</field>
+            <field name="code">product.internal.reference</field>
+            <field eval="8" name="padding"/>
+            <field eval="10000000" name="number_next"/>
+            <field eval="1" name="number_increment"/>
+        </record>
+
+    </data>
+</odoo>

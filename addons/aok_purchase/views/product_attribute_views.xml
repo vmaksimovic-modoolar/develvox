@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="attribute_checklist_category_form_view" model="ir.ui.view">
+        <field name="name">attribute.checklist.category.form.view</field>
+        <field name="model">attributes.checklist.category</field>
+        <field name="arch" type="xml">
+            <form string="Attribute Checklist Category">
+                <group>
+                    <field name="name"/>
+                    <field name="attribute_ids">
+                        <tree string="Attributes" editable="bottom">
+                            <field name="name"/>
+                            <field name="require"/>
+                        </tree>
+                    </field>
+                    <field name="description"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="attribute_checklist_category_list_view" model="ir.ui.view">
+        <field name="name">attribute.checklist.category.list</field>
+        <field name="model">attributes.checklist.category</field>
+        <field name="priority">1</field>
+        <field name="arch" type="xml">
+            <tree string="Attributes Checklist Category">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="attribute_checklist_category_action_form" model="ir.actions.act_window">
+        <field name="name">Attributes Checklist Category</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">attributes.checklist.category</field>
+        <field name="view_type">form</field>
+        <field name="view_id" ref="attribute_checklist_category_list_view"/>
+    </record>
+
+	<menuitem
+        id="menu_checklist_category_in_config_purchase"
+        action="attribute_checklist_category_action_form"
+        name="Attribute Checklist"
+        parent="purchase.menu_purchase_config" sequence="50"/>
+
+    <record id="attribute_checklist_form_view" model="ir.ui.view">
+        <field name="name">attribute.checklist.form.view</field>
+        <field name="model">attributes.checklist</field>
+        <field name="arch" type="xml">
+            <form string="Attribute Checklist">
+                <group>
+                    <field name="name"/>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record id="attribute_checklist_tree_view" model="ir.ui.view">
+        <field name="name">attribute.checklist.tree.view</field>
+        <field name="model">attributes.checklist</field>
+        <field name="arch" type="xml">
+            <tree string="Attribute Checklist">
+             	<field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+</odoo>

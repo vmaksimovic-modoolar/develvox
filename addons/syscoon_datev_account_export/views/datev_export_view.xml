@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="wizard_user_export" model="ir.ui.view">
+            <field name="name">Export Debitor/Creditor Data</field>
+            <field name="model">datev.export</field>
+            <field name="arch" type="xml">
+                <form string="Export Debitor/Creditor Data">
+                    <field invisible="1" name="state"/>
+                    <field name="name" invisible="1"/>
+                    <group string="Export Settings">
+                        <field name="date"/>
+                        <field name="filter"/>
+                    </group>
+                    <div>
+                        <h2>Export Completed</h2>
+                        <group attrs="{'invisible': [('data','=', False)]}">
+                        	<p>Exported File: <field name="data" readonly="1" filename="name"/></p>
+                        </group>
+                        <group attrs="{'invisible': [('data','!=', False)]}">
+                        	<p>No data to export.</p>
+                        </group>
+                    </div>
+                    <footer>
+                     	<button name="act_getfile" string="Export" type="object" class="oe_highlight"/>
+                        <button special="cancel" string="Cancel" type="object" class="oe_link"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_wizard_user_export" model="ir.actions.act_window">
+            <field name="name">Export Debitor/Creditor Data</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">datev.export</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+        <menuitem
+            name="Create DATEV Account Export"
+            action="action_wizard_user_export"
+            id="datev_export_wizard_menu"
+            parent="syscoon_financeinterface.menu_finance_interface"
+            groups="syscoon_financeinterface.group_ecofi_financeinterface"/>
+    </data>
+</odoo>

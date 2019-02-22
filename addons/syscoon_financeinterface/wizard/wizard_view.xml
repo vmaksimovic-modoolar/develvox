@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="export_ecofi_view" model="ir.ui.view">
+             <field name="name">Create Financial Export</field>
+             <field name="model">export.ecofi</field>
+             <field name="type">form</field>
+             <field name="arch" type="xml">
+                <form string="Financial Export">
+                    <group>
+                        <field name="export_mode"/>
+                        <field name="vorlauf_id" attrs="{'invisible': ['|', ('vorlauf_id','=',False), ('export_mode', 'not in', ['datev_ascii'])]}"/>
+                        <field name="journal_id" attrs="{'invisible': ['|', ('vorlauf_id','!=',False), ('export_mode', 'not in', ['datev_ascii'])], 'required': [('vorlauf_id','=',False)]}"/>
+                        <field name="export_xml_customer_invoices" attrs="{'invisible': [('export_mode', 'not in', ['datev_xml'])]}"/>
+                        <field name="export_xml_vendor_invoices" attrs="{'invisible': [('export_mode', 'not in', ['datev_xml'])]}"/>
+                    </group>
+                    <group>
+    	                <field name="date_from" attrs="{'required': [('vorlauf_id','=',False)]}"/>
+    	                <field name="date_to" attrs="{'required': [('vorlauf_id','=',False)]}"/>
+    	            </group>
+    	            <footer>
+                        <button string="Cancel" special="cancel"/>
+                        <button string="Start Export" name="startexport" type="object" class="btn-default"/>
+                    </footer>
+	            </form>
+             </field>
+         </record>
+
+        <record id="ecoservice_ecofi_export_wizard" model="ir.actions.act_window">
+            <field name="name">Create DATEV Move Export</field>
+            <field name="res_model">export.ecofi</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="export_ecofi_view"/>
+            <field name="target">new</field>
+       </record>
+
+       <act_window name="Create Financial Export"
+            res_model="export.ecofi"
+            src_model="ecofi"
+            view_mode="form"
+            target="new"
+            key2="client_action_multi"
+            id="action_create_export_from_ecofi"/>
+
+    </data>
+</odoo>
+

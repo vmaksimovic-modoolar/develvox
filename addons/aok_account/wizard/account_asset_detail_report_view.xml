@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_asset_detail_report_form" model="ir.ui.view">
+        <field name="name">asset.detail.report.form</field>
+        <field name="model">asset.detail.report</field>
+        <field name="arch" type="xml">
+        <form string="Asset Detail Report">
+            <group>
+                <field name="date_from"/>
+                <field name="date_to" />
+            </group>
+            <footer>
+                <button name="print_report" string="Print" type="object" class="btn-primary print_report"/>
+                <button name="print_report_pdf" string="Print PDF" type="object" class="btn-primary print_report"/>
+                <button string="Cancel" special="cancel" class="btn-default"/>
+            </footer>
+        </form>
+        </field>
+    </record>
+
+    <record id="view_asset_detail_report_download" model="ir.ui.view">
+        <field name="name">asset.detail.report.download</field>
+        <field name="model">asset.detail.report</field>
+        <field name="arch" type="xml">
+            <form string="Download Asset Detail Report">
+                <group>
+                    <field name="name" invisible="1"/>
+                    <field name="data" filename="name"/>
+                </group>
+                <footer>
+                    <button special="cancel" string="Close" type="object" class="btn-primary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_asset_detail_report" model="ir.actions.act_window">
+        <field name="name">Asset Detail Report</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">asset.detail.report</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_asset_detail_report_form"/>
+        <field name="target">new</field>
+    </record>
+
+     <menuitem
+        name="Asset Detail Report"
+        parent="account.account_reports_management_menu"
+        action="action_asset_detail_report"
+        id="menu_asset_detail_report"
+        sequence="31"/>
+
+</odoo>

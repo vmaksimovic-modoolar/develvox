@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- ACCOUNT ACCOUNT -->
+        <record id="view_account_form_inherit_ecofi_datev" model="ir.ui.view">
+            <field name="name">account.account.form.inherit.ecofi.datev</field>
+            <field name="model">account.account</field>
+            <field name="inherit_id" ref="account.view_account_form"/>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <field name="deprecated" position="after">
+                    <br /><br />
+                    <p style="font-weight: bold;">Datev</p><br />
+                    <field name="ustuebergabe"/>
+                    <field name="automatic"/>
+                    <field name="datev_steuer" widget="many2many_tags"/>
+                    <field name="datev_steuer_erforderlich"/>
+                </field>
+            </field>
+        </record>
+
+        <!-- Tax -->
+        <record id="view_tax_form_inherit_ecofi_buchungsschluessel_datev" model="ir.ui.view">
+            <field name="name">account.tax.form.inherit.ecofi.skonto.datev</field>
+            <field name="model">account.tax</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="account.view_tax_form" />
+            <field name="arch" type="xml">
+                <field name="name" select="1" position="after">
+                    <field name="datev_skonto"/>  
+                </field>
+            </field>
+        </record>   
+
+        <menuitem
+            name="Create DATEV Move Export"
+            action="syscoon_financeinterface.ecoservice_ecofi_export_wizard"
+            id="ecoservice_ecofi_wizard_menu"
+            parent="syscoon_financeinterface.menu_finance_interface"
+            groups="syscoon_financeinterface.group_ecofi_financeinterface"
+            sequence="20"/>
+
+    </data>
+</odoo>

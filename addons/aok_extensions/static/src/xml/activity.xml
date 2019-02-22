@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-extend="mail.activity_items">
+        <t t-jquery=".o_thread_message_core > .o_thread_message_tools > a:last-child" t-operation="replace"/>
+
+        <t t-jquery=".o_thread_message_collapse > dl > dd:last-child" t-operation="after">
+            <dt>Created by</dt>
+            <dd class="mb8">
+                <img t-attf-src="/web/image#{activity.create_uid[0] >= 0 ? ('/res.users/' + activity.create_uid[0] + '/image_small') : ''}" height="18" width="18" class="img-circle mr4" t-att-title="activity.create_uid[1]"/>
+                <b><t t-esc="activity.create_uid[1]"/></b>
+            </dd>
+        </t>
+    </t>
+</templates>

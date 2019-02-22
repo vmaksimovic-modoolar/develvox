@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+    <!--<template id="assets_backend" name="report_gantt_native assets" inherit_id="web.assets_backend">-->
+
+    <template id="assets_common" name="project_native_report_gantt pdf assets" inherit_id="web.report_assets_common">
+    <xpath expr="." position="inside">
+
+        <link rel="stylesheet" href="/project_native_report/static/src/css/gantt_native_report.css"/>
+
+    </xpath>
+    </template>
+
+
+    <template id="project_native_gantt_report">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.internal_layout">
+                    <span t-field="o.display_name"/>
+                    <t t-set="gantt_data" t-value="get_gantt(o)" />
+
+                    <t t-set="ind" t-value="0"/>
+                    <t t-foreach="gantt_data['pages']" t-as="page_els">
+                        <t t-set="step" t-value="page_els['page_step']"/>
+
+
+                        <div class="row_container" t-att-data-field="step">
+
+                            <t t-if="page_els['elements']" >
+                                <t t-set="gantt_width" t-value="page_els['gantt_x_size']"/>
+                                <t t-set="gantt_height" t-value="page_els['gantt_y_size']"/>
+                                <t t-set="gantt_class" t-value="'gantt-canvas gantt-canvas-f1'"/>
+                            </t>
+
+                            <t t-if="page_els['elements_gantt']" >
+                                <t t-set="gantt_width" t-value="page_els['gantt_x1_size']"/>
+                                <t t-set="gantt_height" t-value="page_els['gantt_y_size']"/>
+                                <t t-set="gantt_class" t-value="'gantt-canvas gantt-canvas-l1'"/>
+                            </t>
+
+
+                            <div  t-att-id="'myCanvas-{}-{}'.format(ind,step)" t-att-style="'width:{}px; height:{}px;'.format(gantt_width,gantt_height)" t-att-class="gantt_class" ></div>
+
+
+                              <!--<t t-foreach="page_els['link_list']" t-as="link_list">-->
+
+                                  <!--<t t-js="ctx">-->
+                                      <!--var can = '<t t-raw="ind"/>';-->
+
+                                      <!--var to_id = '<t t-raw="link_list['to_id']"/>';-->
+                                      <!--var type = '<t t-raw="link_list['type']"/>';-->
+
+                                      <!--var page_x_item = '<t t-raw="page_els['page_x_item']"/>';-->
+
+                                      <!--var from_obj_raw = '<t t-raw="link_list['from_obj']"/>';-->
+                                      <!--var to_obj_raw = '<t t-raw="link_list['to_obj']"/>';-->
+                                      <!--var gantt_height = '<t t-raw="gantt_height"/>';-->
+
+                                      <!---->
+                                  <!--</t>-->
+
+                              <!--</t>-->
+
+
+                            <!-- ==Head for Gantt== -->
+                            <div class="row_gantt" t-att-style="'width:{}px;'.format(page_els['row_gantt_width'])">
+                                <div t-if="page_els['elements']" class="col_gantt_empty">&#160;</div>
+
+                                <t t-foreach="page_els['date0']" t-as="r_date0">
+                                    <div class="col_gantt_second" t-att-style="'width:{}px;'.format(r_date0['span'])"  t-esc="r_date0['string']"/>
+                                </t>
+                            </div>
+
+
+                            <div class="row_gantt" t-att-style="'width:{}px;'.format(page_els['row_gantt_width'])">
+                                <div t-if="page_els['elements']" class="col_gantt_empty">&#160;</div>
+
+                                 <t t-foreach="page_els['date']" t-as="r_date">
+                                     <div class="col_gantt_second"  t-esc="r_date"/>
+                                 </t>
+                            </div>
+                            <!-- ==Head for Gantt== -->
+
+
+
+                            <t t-foreach="page_els['elements_gantt']" t-as="elements_gantt">
+                                <div class="row_gantt_item" t-att-style="'width:{}px;'.format(page_els['row_gantt_width'])">
+                                    <div class="col_gantt_1px">&#160;</div>
+
+                                    <t t-foreach="elements_gantt['gantt_bar']" t-as="gantt_bar">
+
+                                        <t t-if="gantt_bar['step'] == step">
+                                             <div t-att-class="gantt_bar['bar_css']" t-att-style="gantt_bar['bar_style']" >
+                                                 <div t-if="gantt_bar['bar_name']" class="task-gantt-name"  t-esc="gantt_bar['bar_name']"  t-att-style="'width:{}px;'.format(gantt_bar['bar_width']-5)"/>
+
+                                                 <div t-if="gantt_bar['is_group']" class="task-gantt-bar-summary-s1" t-att-style="'width:{}px; left:{}px;'.format(gantt_bar['bar_width'], gantt_bar['bar_left'])">
+                                                    <div class="task-gantt-summary task-gantt-summary-start"></div>
+                                                    <div class="task-gantt-summary task-gantt-summary-end"></div>
+                                                    <div class="task-gantt-summary-width" t-att-style="'width:{}px;'.format(gantt_bar['bar_width'])"></div>
+                                                 </div>
+
+                                             </div>
+                                        </t>
+
+                                    </t>
+
+                                </div>
+                            </t>
+
+
+                            <t t-foreach="page_els['elements']" t-as="elements">
+                                <div class="row_gantt_item" t-att-style="'width:{}px;'.format(page_els['row_gantt_width'])">
+                                    <div t-att-class="elements['name_css']"  t-esc="elements['name']" t-att-style="'padding-left:{}px;'.format(elements['paddepth'])"/>
+                                    <div class="col_gantt_duration"  t-esc="elements['duration']"/>
+                                    <t t-foreach="elements['gantt_bar']" t-as="gantt_bar">
+
+                                        <t t-if="gantt_bar['step'] == step">
+                                            <div  t-att-class="gantt_bar['bar_css']" t-att-style="gantt_bar['bar_style']" >
+                                                <div t-if="gantt_bar['bar_name']" class="task-gantt-name"  t-esc="gantt_bar['bar_name']"  t-att-style="'width:{}px;'.format(gantt_bar['bar_width']-5)"/>
+
+                                                <div t-if="gantt_bar['is_group']" class="task-gantt-bar-summary-s1" t-att-style="'width:{}px; left:{}px;'.format(gantt_bar['bar_width'], gantt_bar['bar_left'])">
+                                                    <div class="task-gantt-summary task-gantt-summary-start"></div>
+                                                    <div class="task-gantt-summary task-gantt-summary-end"></div>
+                                                    <div class="task-gantt-summary-width" t-att-style="'width:{}px;'.format(gantt_bar['bar_width'])"></div>
+                                                </div>
+
+                                            </div>
+                                        </t>
+
+                                     </t>
+
+                                </div>
+                            </t>
+
+
+                        </div>
+
+
+                      <p style="page-break-after: always;"> </p>
+                      <t t-set="ind" t-value="ind+1"/>
+                  </t>
+
+            </t>
+          </t>
+      </t>
+    </template>
+
+</data>
+</odoo>

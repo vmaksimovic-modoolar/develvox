@@ -1,0 +1,453 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#   * syscoon_financeinterface
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 11.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-06-28 07:30+0000\n"
+"PO-Revision-Date: 2018-06-28 07:30+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: syscoon_financeinterface
+#: model:ir.model.fields,field_description:syscoon_financeinterface.field_account_move_line_ecofi_account_counterpart
+msgid "Account Counterpart"
+msgstr "Gegenkonto"
+
+#. module: syscoon_financeinterface
+#: model:ir.model,name:syscoon_financeinterface.model_account_move
+msgid "Account Entry"
+msgstr "Buchungssatz"
+
+#. module: syscoon_financeinterface
+#: model:ir.model.fields,field_description:syscoon_financeinterface.field_ecofi_account_invoices
+msgid "Account Invoices"
+msgstr "Account Invoices"
+
+#. module: syscoon_financeinterface
+#: model:ir.model.fields,field_description:syscoon_financeinterface.field_ecofi_account_moves
+msgid "Account Moves"
+msgstr "Buchungssätze"
+
+#. module: syscoon_financeinterface
+#: code:addons/syscoon_financeinterface/models/account.py:25
+#, python-format
+msgid "Account moves which are already in an export can not be deleted!"
+msgstr "Account moves which are already in an export can not be deleted!"
+
+#. module: syscoon_financeinterface
+#: model:ir.model.fields,field_description:syscoon_financeinterface.field_account_move_line_ecofi_brutto_credit
+msgid "Amount Credit Brutto"
+msgstr "Haben Brutto"
+
+#. module: syscoon_financeinterface
+#: model:ir.model.fields,field_description:syscoon_financeinterface.field_account_move_line_ecofi_brutto_debit
+msgid "Amount Debit Brutto"
+msgstr "Soll Brutto"
+
+#. module: syscoon_financeinterface
+#: model:ir.model.fields,field_description:syscoon_financeinterface.field_account_move_ecofi_autotax
+msgid "Automatic Tax Lines"
+msgstr "Automatische Steuerzeilen"
+
+#. module: syscoon_financeinterface
+#: model:ir.ui.view,arch_db:syscoon_financeinterface.export_ecofi_view
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#. module: syscoon_financeinterface
+#: model:ir.model.fields,field_description:syscoon_financeinterface.field_ecofi_note
+msgid "Comment"
+msgstr "Kommentar"
+
+#. module: syscoon_financeinterface
+#: model:ir.model,name:syscoon_financeinterface.model_res_company
+msgid "Companies"
+msgstr "Unternehmen"
+
+#. module: syscoon_financeinterface
+#: model:ir.actions.act_window,name:syscoon_financeinterface.ecoservice_ecofi_export_wizard
+msgid "Create DATEV Move Export"
+msgstr "Create DATEV Move Export"
+
+#. module: syscoon_financeinterface
+#: model:ir.actions.act_window,name:syscoon_financeinterface.action_create_export_from_ecofi
+msgid "Create Financial Export"
+msgstr "Export Buchungen"
+
+#. module: syscoon_financeinterface
+#: model:ir.model.fields,field_description:syscoon_financeinterface.field_ecofi_create_uid
+#: model:ir.model.fields,field_description:syscoon_financeinterface.field_export_ecofi_create_uid
+msgid "Created by"
+msgstr "Erstellt von"
+
+#. module: syscoon_financeinterface
+#: model:ir.model.fields,field_description:syscoon_financeinterface.field_ecofi_create_date
+#: model:ir.model.fields,field_description:syscoon_financeinterface.field_export_ecofi_create_date
+msgid "Created on"
+msgstr "Erstellt am"
+
+#. module: syscoon_financeinterface
+#: model:ir.model.fields,field_description:syscoon_financeinterface.field_export_ecofi_export_xml_customer_invoices
+msgid "Customer Invoices"
+msgstr "Ausgangsrechnungen"
+
+#. module: syscoon_financeinterface
+#: selection:export.ecofi,export_mode:0
+msgid "DATEV ASCII"
+msgstr "DATEV ASCII"
+
+#. module: syscoon_financeinterface
+#: selection:export.ecofi,export_mode:0
+msgid "DATEV XML"
+msgstr "DATEV XML"
+
+#. module: syscoon_financeinterface
+#: model:ir.model.fields,field_description:syscoon_financeinterface.field_export_ecofi_date_from
+msgid "Date From"
+msgstr "Datum von"
+
+#. module: syscoon_financeinterface
+#: model:ir.model.fields,field_description:syscoon_financeinterface.field_export_ecofi_date_to
+msgid "Date To"
+msgstr "Datum bis"
+
+#. module: syscoon_financeinterface
+#: selection:res.company,finance_interface:0
+msgid "Datev"
+msgstr "Datev"
+
+#. module: syscoon_financeinterface
+#: model:ir.model.fields,field_description:syscoon_financeinterface.field_ecofi_display_name
+#: model:ir.model.fields,field_description:syscoon_financeinterface.field_export_ecofi_display_name
+msgid "Display Name"
+msgstr "Anzeigename"
+
+#. module: syscoon_financeinterface
+#: model:ir.model.fields,field_description:syscoon_financeinterface.field_ecofi_ecofi_document_ids
+msgid "Documents"
+msgstr "Datei"
+
+#. module: syscoon_financeinterface
+#: model:ir.model,name:syscoon_financeinterface.model_ecofi
+msgid "Ecoservice Financial Interface"
+msgstr "syscoon Finanzinterface"
+
+#. module: syscoon_financeinterface
+#: code:addons/syscoon_financeinterface/models/ecofi.py:349
+#, python-format
+msgid "Edited posting lines: %s"
+msgstr "Geänderte Buchungszeilen: %s"
+
+#. module: syscoon_financeinterface
+#: code:addons/syscoon_financeinterface/models/ecofi.py:347
+#, python-format
+msgid "Edited posting record : %s"
+msgstr "Geänderte Buchungssätze: %s"
+
+#. module: syscoon_financeinterface
+#: code:addons/syscoon_financeinterface/models/ecofi.py:353
+#, python-format
+msgid "Error: %s"
+msgstr "Fehler: %s"
+
+#. module: syscoon_financeinterface
+#: model:ir.model.fields,field_description:syscoon_financeinterface.field_account_invoice_vorlauf_id
+#: model:ir.model.fields,field_description:syscoon_financeinterface.field_account_move_vorlauf_id
+msgid "Export"
+msgstr "Export"
+
+#. module: syscoon_financeinterface
+#: model:ir.model.fields,field_description:syscoon_financeinterface.field_ecofi_csv_file
+msgid "Export CSV"
+msgstr "CSV Datei"
+
+#. module: syscoon_financeinterface
+#: model:ir.model.fields,field_description:syscoon_financeinterface.field_export_ecofi_export_mode
+msgid "Export Mode"
+msgstr "Export Mode"
+
+#. module: syscoon_financeinterface
+#: model:ir.model.fields,field_description:syscoon_financeinterface.field_ecofi_export_mode_xml
+msgid "Export Mode XML"
+msgstr "XML Export"
+
+#. module: syscoon_financeinterface
+#: model:ir.model.fields,field_description:syscoon_financeinterface.field_export_ecofi_export_type
+msgid "Export Type"
+msgstr "Export Typ"
+
+#. module: syscoon_financeinterface
+#: model:ir.model.fields,field_description:syscoon_financeinterface.field_account_invoice_ecofi_buchungstext
+#: model:ir.model.fields,field_description:syscoon_financeinterface.field_account_move_ecofi_buchungstext
+msgid "Export Voucher Text"
+msgstr "Export Buchungstext"
+
+#. module: syscoon_financeinterface
+#: code:addons/syscoon_financeinterface/models/ecofi.py:344
+#, python-format
+msgid "Export finished"
+msgstr "Export abgeschlossen"
+
+#. module: syscoon_financeinterface
+#: model:ir.model.fields,field_description:syscoon_financeinterface.field_ecofi_name
+msgid "Exportname"
+msgstr "Exportname"
+
+#. module: syscoon_financeinterface
+#: code:addons/syscoon_financeinterface/models/ecofi.py:47
+#, python-format
+msgid "Exports cannot be duplicated."
+msgstr "Exporte können nicht dupliziert werden."
+
+#. module: syscoon_financeinterface
+#: model:ir.model.fields,field_description:syscoon_financeinterface.field_res_company_finance_interface
+#: model:ir.ui.menu,name:syscoon_financeinterface.menu_finance_interface
+msgid "Finance Interface"
+msgstr "Finanzinterface"
+
+#. module: syscoon_financeinterface
+#: model:ir.model,name:syscoon_financeinterface.model_export_ecofi
+msgid "Financeexport"
+msgstr "Finanzexport"
+
+#. module: syscoon_financeinterface
+#: model:ir.ui.view,arch_db:syscoon_financeinterface.view_company_form_inherit_financeinterface
+#: model:res.groups,name:syscoon_financeinterface.group_ecofi_financeinterface
+msgid "Financeinterface"
+msgstr "Finanzinterface"
+
+#. module: syscoon_financeinterface
+#: model:ir.ui.view,arch_db:syscoon_financeinterface.eco_ecofi_form_view
+#: model:ir.ui.view,arch_db:syscoon_financeinterface.eco_ecofi_tree_view
+#: model:ir.ui.view,arch_db:syscoon_financeinterface.export_ecofi_view
+msgid "Financial Export"
+msgstr "Finanzexport"
+
+#. module: syscoon_financeinterface
+#: model:ir.actions.act_window,name:syscoon_financeinterface.eco_ecofi_action
+#: model:ir.ui.menu,name:syscoon_financeinterface.menu_eco_ecofi
+msgid "Financial Exports"
+msgstr "Erledigte Exporte"
+
+#. module: syscoon_financeinterface
+#: model:ir.model.fields,field_description:syscoon_financeinterface.field_ecofi_id
+#: model:ir.model.fields,field_description:syscoon_financeinterface.field_export_ecofi_id
+msgid "ID"
+msgstr "ID"
+
+#. module: syscoon_financeinterface
+#: model:ir.model,name:syscoon_financeinterface.model_account_invoice
+msgid "Invoice"
+msgstr "Rechnung"
+
+#. module: syscoon_financeinterface
+#: model:ir.model.fields,field_description:syscoon_financeinterface.field_ecofi_invoice_error_ids
+msgid "Invoice Errors"
+msgstr "Invoice Errors"
+
+#. module: syscoon_financeinterface
+#: model:ir.model,name:syscoon_financeinterface.model_account_invoice_line
+msgid "Invoice Line"
+msgstr "Rechungsposition"
+
+#. module: syscoon_financeinterface
+#: model:ir.model.fields,field_description:syscoon_financeinterface.field_export_ecofi_journal_id
+#: model:ir.model.fields,field_description:syscoon_financeinterface.field_res_company_journal_ids
+msgid "Journal"
+msgstr "Journal"
+
+#. module: syscoon_financeinterface
+#: model:ir.model,name:syscoon_financeinterface.model_account_move_line
+msgid "Journal Item"
+msgstr "Buchungszeile"
+
+#. module: syscoon_financeinterface
+#: model:ir.model.fields,field_description:syscoon_financeinterface.field_ecofi_journale
+msgid "Journals"
+msgstr "Journale"
+
+#. module: syscoon_financeinterface
+#: model:ir.model.fields,field_description:syscoon_financeinterface.field_ecofi___last_update
+#: model:ir.model.fields,field_description:syscoon_financeinterface.field_export_ecofi___last_update
+msgid "Last Modified on"
+msgstr "Zuletzt geändert am"
+
+#. module: syscoon_financeinterface
+#: model:ir.model.fields,field_description:syscoon_financeinterface.field_ecofi_write_uid
+#: model:ir.model.fields,field_description:syscoon_financeinterface.field_export_ecofi_write_uid
+msgid "Last Updated by"
+msgstr "Zuletzt aktualisiert durch"
+
+#. module: syscoon_financeinterface
+#: model:ir.model.fields,field_description:syscoon_financeinterface.field_ecofi_write_date
+#: model:ir.model.fields,field_description:syscoon_financeinterface.field_export_ecofi_write_date
+msgid "Last Updated on"
+msgstr "Zuletzt aktualisiert am"
+
+#. module: syscoon_financeinterface
+#: model:ir.model.fields,field_description:syscoon_financeinterface.field_account_move_line_ecofi_manual
+msgid "Manual"
+msgstr "Manuell"
+
+#. module: syscoon_financeinterface
+#: model:ir.model.fields,field_description:syscoon_financeinterface.field_account_move_line_ecofi_move_line_autotax
+msgid "Move Counterpart"
+msgstr "Gegenkonto"
+
+#. module: syscoon_financeinterface
+#: model:ir.model.fields,field_description:syscoon_financeinterface.field_ecofi_move_error_ids
+msgid "Move Errors"
+msgstr "Fehlerhafte Buchungssätze"
+
+#. module: syscoon_financeinterface
+#: model:ir.model.fields,field_description:syscoon_financeinterface.field_account_move_line_ecofi_taxid
+msgid "Move Tax"
+msgstr "Steuer"
+
+#. module: syscoon_financeinterface
+#: model:ir.actions.act_window,name:syscoon_financeinterface.act_ecofi_2_account_move
+msgid "Move with Error"
+msgstr "Fehlerhafte Buchungen"
+
+#. module: syscoon_financeinterface
+#: code:addons/syscoon_financeinterface/wizard/export_ecofi_buchungsaetze.py:49
+#, python-format
+msgid "No Export-Method selected. Please select one or install further Modules to provide an Export-Method!"
+msgstr "Keine Export-Methode gewählt. Bitte wählen Sie eine, oder installieren Sie weitere Module um eine Export-Methode auswählen zu können!"
+
+#. module: syscoon_financeinterface
+#: code:addons/syscoon_financeinterface/models/ecofi.py:370
+#, python-format
+msgid "No posting records found"
+msgstr "Keine Buchungssätze gefunden"
+
+#. module: syscoon_financeinterface
+#: selection:res.company,finance_interface:0
+msgid "None"
+msgstr "Keine"
+
+#. module: syscoon_financeinterface
+#: code:addons/syscoon_financeinterface/models/account.py:48
+#, python-format
+msgid "Not all move lines have an account and an account counterpart defined."
+msgstr "Nicht alle Buchungszeilen haben ein Konto und ein Gegenkonto definiert."
+
+#. module: syscoon_financeinterface
+#: model:ir.model.fields,field_description:syscoon_financeinterface.field_ecofi_partner_error_ids
+msgid "Partner Errors"
+msgstr "Fehlerhafte Partner"
+
+#. module: syscoon_financeinterface
+#: model:ir.actions.act_window,name:syscoon_financeinterface.act_ecofi_2_res_partner
+msgid "Partner with Error"
+msgstr "Fehlerhafte Partner"
+
+#. module: syscoon_financeinterface
+#: model:ir.model.fields,field_description:syscoon_financeinterface.field_account_tax_buchungsschluessel
+msgid "Posting key"
+msgstr "Buchungsschlüssel"
+
+#. module: syscoon_financeinterface
+#: model:ir.model.fields,field_description:syscoon_financeinterface.field_account_move_ecofi_manual
+msgid "Set Counteraccounts manual"
+msgstr "Gegenkonto manuell setzen"
+
+#. module: syscoon_financeinterface
+#: model:ir.ui.view,arch_db:syscoon_financeinterface.export_ecofi_view
+msgid "Start Export"
+msgstr "Export starten"
+
+#. module: syscoon_financeinterface
+#: code:addons/syscoon_financeinterface/models/ecofi.py:328
+#, python-format
+msgid "Start export"
+msgstr "Export starten"
+
+#. module: syscoon_financeinterface
+#: model:ir.model.fields,field_description:syscoon_financeinterface.field_ecofi_csv_file_fname
+msgid "Stored Filename"
+msgstr "Gespeicherter Dateiname"
+
+#. module: syscoon_financeinterface
+#: model:ir.model,name:syscoon_financeinterface.model_account_tax
+msgid "Tax"
+msgstr "Steuer"
+
+#. module: syscoon_financeinterface
+#: code:addons/syscoon_financeinterface/models/ecofi.py:209
+#, python-format
+msgid "The main account of the booking could not be resolved, the move has %s credit- and %s debitlines!"
+msgstr "Das Hauptkonto der Buchung kann nicht ermittelt werden, der Buchungssatz hat %s Haben- und %s Sollzeilen!"
+
+#. module: syscoon_financeinterface
+#: code:addons/syscoon_financeinterface/models/account.py:52
+#, python-format
+msgid "The sum of the account lines debit/credit and the account_counterpart lines debit/credit is no Zero!"
+msgstr "Die Summe aus den Buchungszeilen ist nicht Null!"
+
+#. module: syscoon_financeinterface
+#: code:addons/syscoon_financeinterface/models/account.py:267
+#: code:addons/syscoon_financeinterface/models/account.py:277
+#, python-format
+msgid "There can only be one tax per invoice line"
+msgstr "Es kann nur ein Steuersatz pro Rechnungszeile geben."
+
+#. module: syscoon_financeinterface
+#: code:addons/syscoon_financeinterface/models/ecofi.py:282
+#: code:addons/syscoon_financeinterface/models/ecofi.py:289
+#, python-format
+msgid "There is no journal for the ecofi_export configured!"
+msgstr "Es ist kein Journal für den Finanzexport konfiguriert!"
+
+#. module: syscoon_financeinterface
+#: code:addons/syscoon_financeinterface/models/ecofi.py:325
+#, python-format
+msgid "This export is conducted under the Vorlaufname: %s"
+msgstr "Der Export wurde gespeichert unter: %s"
+
+#. module: syscoon_financeinterface
+#: model:ir.model.fields,field_description:syscoon_financeinterface.field_export_ecofi_export_xml_vendor_invoices
+msgid "Vendor Invoices"
+msgstr "Eingangsrechnungen"
+
+#. module: syscoon_financeinterface
+#: model:ir.model.fields,field_description:syscoon_financeinterface.field_export_ecofi_vorlauf_id
+msgid "Vorlauf"
+msgstr "Vorlauf"
+
+#. module: syscoon_financeinterface
+#: code:addons/syscoon_financeinterface/models/account.py:25
+#: code:addons/syscoon_financeinterface/models/ecofi.py:47
+#, python-format
+msgid "Warning!"
+msgstr "Warnung!"
+
+#. module: syscoon_financeinterface
+#: code:addons/syscoon_financeinterface/models/ecofi.py:351
+#, python-format
+msgid "Warnings: %s"
+msgstr "Warnungen: %s"
+
+#. module: syscoon_financeinterface
+#: code:addons/syscoon_financeinterface/models/account.py:95
+#, python-format
+msgid "You can not create tax lines in an auto tax move."
+msgstr "Sie können keine Steuerzeile in einer Automatikbuchung erstellen."
+
+#. module: syscoon_financeinterface
+#: code:addons/syscoon_financeinterface/models/account.py:80
+#, python-format
+msgid "You cannot modify an already exported move."
+msgstr "Sie können keinen exportierten Buchungssatz ändern."
+
+#. module: syscoon_financeinterface
+#: model:ir.model.fields,field_description:syscoon_financeinterface.field_ecofi_zeitraum
+msgid "Zeitraum"
+msgstr "Zeitraum"

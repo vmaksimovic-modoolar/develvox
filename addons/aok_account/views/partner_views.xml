@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_res_partner_form_inherit_aok" model="ir.ui.view">
+        <field name="name">res.partner.form.inherit.aok</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <field name="type" position="after">
+                <field name="organisation_id" domain="[('is_company', '=', True)]"/>
+                <field name="insurance_status"/>
+                <field name="insured_number"/>
+                <field name="birth_date"/>
+            </field>
+            <field name="user_id" position="after">
+                <field name="send_list"/>
+                <field name="subscription_id" attrs="{'invisible': [('send_list', '=', False)]}"/>
+                <field name="sub_from" attrs="{'invisible': [('send_list', '=', False)]}"/>
+                <field name="sub_until" attrs="{'invisible': [('send_list', '=', False)]}"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_sale_subscription_form_inherit_aok" model="ir.ui.view">
+        <field name="name">sale.subscription.form.inherit.aok</field>
+        <field name="model">sale.subscription</field>
+        <field name="inherit_id" ref="sale_subscription.sale_subscription_view_form"/>
+        <field name="arch" type="xml">
+            <page id="settings" position="after">
+                <page string="Unterbezieher">
+                    <field name="contacts" readonly="1"/>
+                </page>
+            </page>
+        </field>
+    </record>
+
+</odoo>

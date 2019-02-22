@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_account_tax_form_inherit_aok" model="ir.ui.view">
+        <field name="name">account.tax.form.inherit.aok</field>
+        <field name="model">account.tax</field>
+        <field name="inherit_id" ref="account.view_tax_form"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="discount_account_id" attrs="{'invisible': [('type_tax_use','!=','purchase')]}"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_account_payment_term_form_inherit_aok" model="ir.ui.view">
+        <field name="name">account.payment.term.form.inherit.aok</field>
+        <field name="model">account.payment.term</field>
+        <field name="inherit_id" ref="account.view_payment_term_form"/>
+        <field name="arch" type="xml">
+            <field name="name" position="after">
+                <field name="one_due_amount"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_account_payment_mode_form_inherit_aok" model="ir.ui.view">
+        <field name="name">account.payment.mode.form.inherit.aok</field>
+        <field name="model">account.payment.mode</field>
+        <field name="inherit_id" ref="account_payment_mode.account_payment_mode_form"/>
+        <field name="arch" type="xml">
+            <field name="group_lines" position="after">
+                <field name="consider_payment_discount" attrs="{'invisible': [('payment_type','!=','outbound')]}"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_account_payment_line_discount_tree" model="ir.ui.view">
+        <field name="name">account.payment.line.discount.tree</field>
+        <field name="model">account.payment.line.discount</field>
+        <field name="arch" type="xml">
+            <tree string="Discount Lines">
+                <field name="payment_line_id"/>
+                <field name="invoice_amount"/>
+                <field name="discount_due_date"/>
+                <field name="payment_discount_perc"/>
+                <field name="payment_discount"/>
+                <field name="tax_id"/>
+                <field name="account_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_account_payment_order_form_inherit_aok" model="ir.ui.view">
+        <field name="name">account.payment.order.form.inherit.aok</field>
+        <field name="model">account.payment.order</field>
+        <field name="inherit_id" ref="account_payment_order.account_payment_order_form"/>
+        <field name="arch" type="xml">
+            <field name="batch_booking" position="after">
+                <field name="consider_payment_discount"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_account_payment_line_tree_inherit_aok" model="ir.ui.view">
+        <field name="name">account.payment.line.tree.inherit.aok</field>
+        <field name="model">account.payment.line</field>
+        <field name="inherit_id" ref="account_payment_order.account_payment_line_tree"/>
+        <field name="arch" type="xml">
+            <field name="amount_currency" position="after">
+                <field name="payment_discount"/>
+                <field name="deduct_discount"/>
+                <field name="discount_due_date"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_account_payment_line_form_inherit_aok" model="ir.ui.view">
+        <field name="name">account.payment.line.form.inherit.aok</field>
+        <field name="model">account.payment.line</field>
+        <field name="inherit_id" ref="account_payment_order.account_payment_line_form"/>
+        <field name="arch" type="xml">
+            <field name="amount_currency" position="after">
+                <field name="discounted_amount"/>
+                <field name="payment_discount"/>
+                <field name="deduct_discount"/>
+                <field name="discount_due_date"/>
+            </field>
+            <group name="main" position="after">
+                <separator string="Discount Lines"/>
+                <div>
+                    <field name="payment_line_discount_ids"/>
+                </div>
+            </group>
+        </field>
+    </record>
+
+    <record id="view_product_category_form_inherit_aok" model="ir.ui.view">
+        <field name="name">product.category.form.inherit.aok</field>
+        <field name="model">product.category</field>
+        <field name="inherit_id" ref="account.view_category_property_form"/>
+        <field name="arch" type="xml">
+            <field name="property_account_expense_categ_id" position="after">
+                <field name="analytic_account_id" required="1"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_product_product_form_inherit_aok" model="ir.ui.view">
+        <field name="name">product.product.form.inherit.aok</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <field name="categ_id" position="after">
+                <field name="analytic_tag_ids" widget="many2many_tags"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_product_template_form_inherit_aok_account" model="ir.ui.view">
+        <field name="name">product.template.form.inherit.aok.account</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <div name="options" position="inside">
+                <div>
+                    <field name="is_encasing"/>
+                    <label for="is_encasing"/>
+                </div>
+            </div>
+        </field>
+    </record>
+
+</odoo>

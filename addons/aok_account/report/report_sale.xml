@@ -1,0 +1,216 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <template id="report_saleorder_document_inherited" inherit_id="sale.report_saleorder_document" priority="80">
+        <t t-call="web.external_layout" position="replace">
+        <t t-call="aok_account.external_layout_aok">
+        <t t-set="doc" t-value="doc.with_context({'lang':doc.partner_id.lang})"/>
+        <div class="page" style="font-family: Helvetica, Arial;">
+            <style>
+                .clearfix tr:last-child {
+                    color: white !important;
+                    background-color: black !important;
+                }
+                .linespace_7pt {
+                    padding-top: 7pt;
+                }
+                .linespace_4pt {
+                    padding-top: 4pt;
+                }
+            </style>
+            <div class="oe_structure"/>
+            <div class="row" style="height: 230px !important;">
+                <div class="col-xs-6">
+                    <div style="font-size: 6pt; padding-top:40px;padding-left: 26px;">
+                        <span t-field="doc.company_id.partner_id"/>&amp;nbsp;&amp;nbsp;|&amp;nbsp;<span t-field="doc.company_id.partner_id.street"/>&amp;nbsp;|&amp;nbsp;<span t-field="doc.company_id.partner_id.zip"/>
+                        <span t-field="doc.company_id.partner_id.city"/>
+                    </div>
+                    <div style="font-size: 11pt;padding-left:32px;padding-top:2px;">
+                        <div class="linespace_7pt" t-field="doc.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: True}"/>
+                    </div>
+                </div>
+                <div class="col-xs-4 col-xs-offset-2" style="font-size: 7pt;padding-top:3px;">
+                    <div class="mb16" t-field="doc.company_id.partner_id"/>
+                    <div t-if="doc.company_id.partner_id.street" t-field="doc.company_id.partner_id.street"/>
+                    <div class="linespace_4pt" t-if="doc.company_id.partner_id.street2" t-field="doc.company_id.partner_id.street2"/>
+                    <div class="linespace_4pt">
+                        <span t-field="doc.company_id.partner_id.zip"/>
+                        <span t-field="doc.company_id.partner_id.city"/>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <div class="linespace_4pt" t-if="doc.company_id.partner_id.phone">Telefon</div>
+                            <div class="linespace_4pt" t-if="doc.company_id.partner_id.email">E-Mail</div>
+                            <div class="linespace_4pt" t-if="doc.company_id.partner_id.website">Internet</div>
+                        </div>
+                        <div class="col-xs-9">
+                            <div class="linespace_4pt" t-if="doc.company_id.partner_id.phone">
+                                <span t-field="doc.company_id.partner_id.phone"/>
+                            </div>
+                            <div class="linespace_4pt" t-if="doc.company_id.partner_id.email">
+                                <span t-field="doc.company_id.partner_id.email"/>
+                            </div>
+                            <div class="linespace_4pt" t-if="doc.company_id.partner_id.website">
+                                <span t-field="doc.company_id.partner_id.website"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h2>
+                <t t-if="not (env.context.get('proforma', False) or is_pro_forma)">
+                    <span t-if="doc.state not in ['draft','sent']">Order # </span>
+                    <span t-if="doc.state in ['draft','sent']">Quotation # </span>
+                </t>
+                <t t-if="env.context.get('proforma', False) or is_pro_forma">
+                    <span>Pro-Forma Invoice # </span>
+                </t>
+                <span t-field="doc.name"/>
+            </h2>
+
+            <div class="row mt32 mb32" style="margin-left: -14px;border:2px solid gray;">
+                <div class="col-xs-2">
+                    <strong>Datum</strong>
+                    <p t-field="doc.date_order" t-options="{'widget': 'date'}"/>
+                </div>
+                <div class="col-xs-2">
+                    <strong>Job-Nr</strong>
+                    <p t-field="doc.job_number"/>
+                </div>
+                <div class="col-xs-2">
+                    <strong>Ansprechpartner</strong>
+                    <p t-field="doc.user_id"/>
+                </div>
+                <div class="col-xs-2">
+                    <strong>Kundennummer</strong>
+                    <p t-field="doc.partner_id.ref"/>
+                </div>
+                <div class="col-xs-2">
+                    <strong>Re.-Datum</strong>
+                    <!-- <p t-field="doc.date"/> -->
+                </div>
+                <div class="col-xs-2">
+                    <strong>Lieferdatum</strong>
+                    <p t-field="doc.commitment_date" t-options="{'widget': 'date'}"/>
+                </div>
+            </div>
+
+            <!-- Is there a discount on at least one line? -->
+            <t t-set="display_discount" t-value="any([l.discount for l in doc.order_line])"/>
+
+            <t t-foreach="doc.order_lines_layouted()" t-as="page">
+                <table class="table-condensed" width="103.6%" style="margin-left: -14px; border:2px solid gray;">
+                    <thead>
+                        <tr style="color: #555555;font-size: 12px;">
+                            <th style="text-transform: none;"><strong>Beschreibung</strong></th>
+                            <th style="text-transform: none;" class="text-right">Steuern</th>
+                            <th style="text-transform: none;" class="text-right">Betrag</th>
+                        </tr>
+                   </thead>
+                   <tbody class="sale_tbody">
+                        <t t-foreach="page" t-as="layout_category">
+
+                            <t t-if="layout_category_size &gt; 1 or page_size &gt; 1" groups="sale.group_sale_layout">
+                                <tr class="active">
+                                    <td colspan="3" style="font-weight: bold; border-bottom: 1px solid black;">&amp;bull;
+                                        <t t-esc="layout_category['name']"/>
+                                    </td>
+                                </tr>
+                            </t>
+
+                            <!-- Lines associated -->
+                            <t t-foreach="layout_category['lines']" t-as="l">
+                                <tr>
+                                    <td><span t-field="l.name"/></td>
+                                    <td class="text-right">
+                                        <span t-esc="', '.join(map(lambda x: (x.description or x.name), l.tax_id))"/>
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-field="l.price_subtotal" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: doc.pricelist_id.currency_id}"/>
+                                    </td>
+                                </tr>
+                            </t>
+
+                            <t t-if="(layout_category_size &gt; 1 or page_size &gt; 1) and layout_category['subtotal']" groups="sale.group_sale_layout">
+                                <tr class="text-right">
+                                    <td colspan="3">
+                                        <strong>Subtotal: </strong>
+                                        <t t-set="subtotal" t-value="sum(line.price_subtotal for line in layout_category['lines'])"/>
+                                        <span t-esc="subtotal" t-options="{'widget': 'monetary', 'display_currency': doc.pricelist_id.currency_id}"/>
+                                    </td>
+                                </tr>
+                            </t>
+
+                        </t>
+                    </tbody>
+                </table>
+
+                <t t-if="page_index &lt; page_size - 1" groups="sale.group_sale_layout">
+                    <p style="page-break-before:always;"> </p>
+                </t>
+            </t>
+
+             <div class="clearfix">
+                <div id="total" class="row mt16">
+                    <div class="col-xs-4 pull-right">
+                        <table class="table-condensed" width="105.5%" style="border:2px solid gray;margin-right:-3px;">
+                            <tr style="border-bottom:1px solid #dddddd;">
+                                <td><strong>Zwischensumme</strong></td>
+                                <td class="text-right">
+                                    <span t-field="doc.amount_untaxed" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: doc.pricelist_id.currency_id}"/>
+                                </td>
+                            </tr>
+                            <t t-foreach="doc._get_tax_amount_by_group()" t-as="amount_by_group">
+                                <tr style="border-bottom:1px solid #dddddd;">
+                                    <t t-if="amount_by_group[3] == 1 and doc.amount_untaxed == amount_by_group[2]">
+                                        <td>
+                                            <span t-esc="amount_by_group[0].replace('Tax', 'MwSt')"/>
+                                            <span>&amp;nbsp;<span>auf</span>&amp;nbsp;
+                                            <t t-esc="amount_by_group[2]" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: doc.pricelist_id.currency_id}"/></span>
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-esc="amount_by_group[1]" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: doc.pricelist_id.currency_id}"/>
+                                        </td>
+                                    </t>
+                                    <t t-else="">
+                                        <td>
+                                            <span t-esc="amount_by_group[0]"/>
+                                            <!-- <span>MwSt</span> -->
+                                        </td>
+                                        <td class="text-right">
+                                            <span t-esc="amount_by_group[1]" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: doc.pricelist_id.currency_id}"/>
+                                        </td>
+                                    </t>
+                                </tr>
+                            </t>
+                            <tr>
+                                <td><strong>Gesamt</strong></td>
+                                <td class="text-right">
+                                    <span t-field="doc.amount_total" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: doc.pricelist_id.currency_id}"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <p t-field="doc.note"/>
+            <p t-if="doc.payment_term_id.note">
+                <span t-field="doc.payment_term_id.note"/>
+            </p>
+            <p t-if="doc.fiscal_position_id and doc.fiscal_position_id.note">
+                <strong>Fiscal Position Remark:</strong>
+                <span t-field="doc.fiscal_position_id.note"/>
+            </p>
+            <div class="oe_structure"/>
+        </div>
+        </t>
+        </t>
+    </template>
+
+    <record id="sale.action_report_saleorder" model="ir.actions.report">
+        <field name="paperformat_id" ref="aok_account.paperformat_aok_invoice"/>
+    </record>
+
+</odoo>

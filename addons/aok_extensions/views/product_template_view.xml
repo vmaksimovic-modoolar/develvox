@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+##############################################################################
+#
+# Copyright (c) 2018 - NOW Modoolar (http://modoolar.com) All Rights Reserved.
+#
+# WARNING: This program as such is intended to be used by professional
+# programmers who take the whole responsibility of assessing all potential
+# consequences resulting from its eventual inadequacies and bugs
+# End users who are looking for a ready-to-use solution with commercial
+# guarantees and support are strongly advised to contract support@modoolar.com
+#
+##############################################################################
+-->
+<odoo>
+
+    <record id="product_template_search_view_competency" model="ir.ui.view">
+        <field name="name">product.template.search.view.competency</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_search_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='activities_upcoming_all']"
+                   position="after">
+                <group expand="0" string="Group By">
+                    <filter name="competency_tag_id" string="Core Competency"
+                            context="{'group_by':'competency_tag_id'}"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_quotations_lines_list" model="ir.actions.act_window">
+        <field name="name">Quotations Lines</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.order.line</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('order_id.state', 'in', ['draft', 'sent']),
+            ('product_id.product_tmpl_id.id', '=',
+            active_id)]
+        </field>
+        <field name="view_id" ref="sale.view_order_line_tree"/>
+    </record>
+
+    <record id="product_template_only_form_view_inherited_aok"
+            model="ir.ui.view">
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+
+            <header position="inside">
+                <button name="%(action_send_new_product_wizard)d" type="action"
+                        string="Send New Product" class="oe_highlight"/>
+            </header>
+
+            <button name="toggle_active" position="before">
+                <button class="oe_stat_button"
+                        name="%(action_quotations_lines_list)d"
+                        type="action" icon="fa-usd"
+                        groups="sales_team.group_sale_salesman">
+                    <field string="Quotations" name="quotations_count"
+                           widget="statinfo"/>
+                </button>
+            </button>
+
+            <notebook position="inside">
+                <page name="subs" string="Subs">
+                    <group>
+                        <group>
+                            <field name="published"/>
+                            <field name="isbn_number"/>
+                            <field name="page_number"/>
+                        </group>
+                        <group>
+                            <field name="printing"/>
+                            <field name="no_subscription"/>
+                            <field name="copyright"/>
+                        </group>
+                    </group>
+                </page>
+            </notebook>
+            <field name="company_id" position="after">
+                <field name="prev_product_id"/>
+                <field name="follow_up_product_id"/>
+                <field name="tag_ids" widget="many2many_tags"
+                       options="{'color_field': 'color'}"/>
+            </field>
+
+        </field>
+    </record>
+
+    <record id="view_product_template_tag_tree" model="ir.ui.view">
+        <field name="name">Product Template Tags</field>
+        <field name="model">product.template.tag</field>
+        <field name="arch" type="xml">
+            <tree string="Product Tags">
+                <field name="display_name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_product_template_tag_form" model="ir.ui.view">
+        <field name="name">Product Template Tags</field>
+        <field name="model">product.template.tag</field>
+        <field name="arch" type="xml">
+            <form string="Product Tag">
+                <sheet>
+                    <label for="name" class="oe_edit_only" string="Name"/>
+                    <h1>
+                        <field name="name"/>
+                    </h1>
+                    <group name="main">
+                        <group name="left">
+                            <field name="color"/>
+                        </group>
+                        <group name="right">
+                            <field name="active"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="products" string="Products">
+                            <field name="product_ids"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_product_template_tag_form"
+            model="ir.actions.act_window">
+        <field name="name">Product Template Tags</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.template.tag</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to create a new partner tag.
+            </p>
+            <p>
+                Manage product template tags to better classify them for
+                tracking and analysis purposes.
+            </p>
+        </field>
+    </record>
+
+    <record id="view_product_template_competency_tag_tree" model="ir.ui.view">
+        <field name="name">Product Template Core Competency Tags</field>
+        <field name="model">product.template.competency.tag</field>
+        <field name="arch" type="xml">
+            <tree string="Product Core Competency Tags">
+                <field name="display_name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_product_template_competency_tag_form" model="ir.ui.view">
+        <field name="name">Product Template Tags</field>
+        <field name="model">product.template.competency.tag</field>
+        <field name="arch" type="xml">
+            <form string="Product Core Competency Tag">
+                <sheet>
+                    <label for="name" class="oe_edit_only" string="Name"/>
+                    <h1>
+                        <field name="name"/>
+                    </h1>
+                    <group name="main">
+                        <group name="left">
+                            <field name="color"/>
+                        </group>
+                        <group name="right">
+                            <field name="active"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page name="products" string="Products">
+                            <field name="product_ids"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_product_template_competency_tag"
+            model="ir.actions.act_window">
+        <field name="name">Core Competency Tags</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.template.competency.tag</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click to create a new product competency tag.
+            </p>
+            <p>
+                Manage product competency tags to better classify them for
+                tracking and analysis purposes.
+            </p>
+        </field>
+    </record>
+
+    <record id="view_product_supplier_inherit_aok" model="ir.ui.view">
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="purchase.view_product_supplier_inherit"/>
+        <field name="arch" type="xml">
+            <group name="vendors" position="before">
+                <group>
+                    <field name="competency_tag_id" string="Core Competency"/>
+                </group>
+            </group>
+            <page name="purchase" position="attributes">
+                <attribute name="attrs">{'invisible': 0}</attribute>
+            </page>
+        </field>
+    </record>
+
+    <record id="product_template_only_form_view_inherit_aok"
+            model="ir.ui.view">
+        <field name="model">product.template</field>
+        <field name="inherit_id"
+               ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <field name="competency_tag_id" position="before">
+                <field name="purchase_responsible_id"
+                       attrs="{'invisible': [('product_variant_count', '>', 1)]}"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_product_supplier_inherit_aok2" model="ir.ui.view">
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <field name="competency_tag_id" position="before">
+                <field name="purchase_responsible_id"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_product_product_tree_inherit_aok" model="ir.ui.view">
+        <field name="name">product.stock.tree.inherit</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_product_tree_view"/>
+        <field name="arch" type="xml">
+            <field name="barcode" position="after">
+                <field name="competency_tag_id" string="Core Competency"/>
+            </field>
+            <field name="barcode" position="replace"/>
+        </field>
+    </record>
+
+    <record id="product_normal_form_view_inherited_aok" model="ir.ui.view">
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='sale_ok']" position="before">
+                <div>
+                    <label for="product_status"/>
+                    <field name="product_status"
+                           options="{'no_create': True, 'no_create_edit':True}"/>
+                </div>
+            </xpath>
+
+            <xpath expr="//field[@name='description_sale']/.."
+                   position="replace"/>
+            <xpath expr="//field[@name='description_purchase']/.."
+                   position="replace"/>
+            <page name="sales" position="attributes">
+                <attribute name="attrs">{'invisible': 0}</attribute>
+            </page>
+        </field>
+    </record>
+
+    <record id="view_product_supplier_inherit_aok3" model="ir.ui.view">
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+            <group name="description" position="inside">
+                <group string="Description for Customers">
+                    <field name="description_sale" nolabel="1"
+                           placeholder="This note will show up on sales orders."/>
+                </group>
+                <group string="Description for Vendors">
+                    <field name="description_purchase" nolabel="1"
+                           placeholder="This note will show up on purchase orders."/>
+                </group>
+            </group>
+        </field>
+    </record>
+
+    <record id="product_template_view_form_list_price" model="ir.ui.view">
+        <field name="name">product.template.view.form.list.price</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <field name="list_price" position="replace"/>
+
+            <xpath expr="//div[@name='pricelist_item']"
+                   position="before">
+                <label for="list_price" class="oe_inline"/>
+                <field name="list_price" widget='monetary'
+                       options="{'currency_field': 'currency_id', 'field_digits': True}"/>
+
+            </xpath>
+        </field>
+    </record>
+
+    <menuitem id="menu_sale_product_tags"
+              name="Tags"
+              parent="sale.menu_sale_config"
+              sequence="10"/>
+
+    <menuitem id="menu_sale_product_template_tags"
+              name="Product Template Tags"
+              parent="menu_sale_product_tags"
+              action="action_product_template_tag_form"
+              sequence="10"/>
+
+    <menuitem id="menu_sale_product_competency_tags"
+              name="Core Competency Tags"
+              parent="menu_sale_product_tags"
+              action="action_product_template_competency_tag"
+              sequence="20"/>
+</odoo>
